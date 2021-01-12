@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ course.courseCode }}: {{course.courseName }}</p>
+
+<h3>Contacts</h3>
+<ul>
+  {% for contact in contacts %}
+    <li>
+      {{ contact.role }}
+      <ul>
+        <li>
+        Name: {{ contact.name }}
+        </li>
+        <li>
+        Email: {{ contact.email }}
+        </li>
+        <li>
+        Location: {{ contact.location }}
+        </li>
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+<h3>Links</h3>
+<ul>
+  {% for link in links %}
+    <li>
+      <a href={{link.link}}>{{ link.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+<h3>Queries</h3>
+<ul>
+  {% for query in queries %}
+    <li>
+      {{ query }}
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}

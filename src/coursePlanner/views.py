@@ -33,3 +33,16 @@ def newCourse(request):
     context = {'form': form}
     templateName = 'coursePlanner/new-course.html'
     return render(request, templateName, context)
+
+def course(request, course_id):
+    course = Course.objects.get(id=course_id)
+    contacts = course.contact_set.all()
+    links = course.link_set.all()
+    queries = course.query_set.all()
+    context = {
+        'course': course, 
+        'contacts': contacts,
+        'links': links,
+        'queries': queries }
+    templateName = 'coursePlanner/course.html'
+    return render(request, templateName, context)
