@@ -9,6 +9,13 @@ from .forms import (
     CourseForm
 )
 
+def courses(request):
+    courses = Course.objects.all()
+    context = {'courses': courses}
+    templateName = 'coursePlanner/courses.html'
+    return render(request, templateName, context)
+
+
 # Create your views here.
 def newCourse(request):
     # Add a new course
@@ -20,9 +27,9 @@ def newCourse(request):
         form = CourseForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('coordinate:home')
+            return redirect('coursePlanner:courses')
     
     # Display the blank or invalid form
     context = {'form': form}
-    template_name = 'coursePlanner/new-course.html'
-    return render(request, template_name, context)
+    templateName = 'coursePlanner/new-course.html'
+    return render(request, templateName, context)
