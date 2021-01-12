@@ -9,13 +9,16 @@
 {% for course in courses %}
 
   <li>
-    {{ course }}
+    <a href="{% url 'coursePlanner:course' course.id %}">{{ course }}</a>
+    
   </li>
 
 {% endfor %}
 </ul>
 
-
+<a href="{% url 'coursePlanner:newCourse' %}">
+<p>Add a course</p>
+</a>
 
 
 
