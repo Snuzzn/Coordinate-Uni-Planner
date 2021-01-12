@@ -15,3 +15,14 @@ class CourseForm(forms.ModelForm):
             'courseCode': 'Course Code',
             'courseName': 'Course Name',
         }
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['role', 'name', 'email', 'location']
+        labels = {
+            'role': 'Role',
+            'name': 'Name',
+            'email': 'Email',
+            'location': 'Location',
+        }

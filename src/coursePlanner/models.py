@@ -11,8 +11,8 @@ class Course(models.Model):
 
 class Contact(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    name = models.CharField(max_length=150)
     role = models.CharField(max_length=300)
+    name = models.CharField(max_length=150)
     email = models.CharField(max_length=320)
     location = models.CharField(max_length=500)
 
