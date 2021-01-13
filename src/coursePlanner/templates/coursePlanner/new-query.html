@@ -24,15 +24,8 @@
   {% endfor %}
 </ul>
 
-<!-- form to add a new contact -->
-<form action="{% url 'coursePlanner:newContact' course.id %}" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button name="submit">Add contact</button>
-</form> 
-<a href="{% url 'coursePlanner:course' course.id %}">
-  <button>Cancel</button>
-</a>
+<a href="{% url 'coursePlanner:newContact' course.id %}">
+  Add a new contact:</a>
 
 <h3>Links</h3>
 <ul>
@@ -42,9 +35,6 @@
     </li>
   {% endfor %}
 </ul>
-<a href="{% url 'coursePlanner:newLink' course.id %}">
-  Add a new link:
-</a>
 
 <h3>Queries</h3>
 <ul>
@@ -54,8 +44,18 @@
     </li>
   {% endfor %}
 </ul>
-<a href="{% url 'coursePlanner:newQuery' course.id %}">
-  Add a new query:
+<a href="{% url 'coursePlanner:newLink' course.id %}">
+  Add a new link:
+</a>
+
+<!-- form to add a new query-->
+<form action="{% url 'coursePlanner:newQuery' course.id %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button name="submit">Add query</button>
+</form> 
+<a href="{% url 'coursePlanner:course' course.id %}">
+  <button>Cancel</button>
 </a>
 
 <h3>Assessments</h3>

@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import (
-    Course,
+    Assessment, Course,
     Contact,
     Link,
     Query,
@@ -25,4 +25,31 @@ class ContactForm(forms.ModelForm):
             'name': 'Name',
             'email': 'Email',
             'location': 'Location',
+        }
+
+class LinkForm(forms.ModelForm):
+    class Meta:
+        model = Link
+        fields = ['link', 'title']
+        labels = {
+            'link': 'Link',
+            'title': 'Title',
+        }
+
+class QueryForm(forms.ModelForm):
+    class Meta:
+        model = Query
+        fields = ['text']
+        labels = {
+            'text': 'Query'
+        }
+
+class AssessmentForm(forms.ModelForm):
+    class Meta:
+        model = Assessment
+        fields = ['task', 'weighting', 'myGrade']
+        labels = {
+            'task': 'Task',
+            'weighting': 'Weighting',
+            'myGrade': 'My Grade',
         }

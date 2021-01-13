@@ -1,3 +1,4 @@
+from typing import Optional
 from django.db import models
 
 # Create your models here.
@@ -29,12 +30,19 @@ class Link(models.Model):
 
 class Query(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    query = models.TextField()
+    text = models.TextField()
 
     class Meta:
         verbose_name_plural = 'queries'
 
     def __str__(self):
-        return f"{self.query[:50]}..."
+        return f"{self.text[:50]}..."
 
-    
+class Assessment(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    task = models.CharField(max_length=100)
+    weighting = models.IntegerField()
+    myGrade = models.IntegerField(blank=True)
+
+    def __str__(self):
+        return self.task 

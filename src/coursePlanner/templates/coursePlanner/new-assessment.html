@@ -23,16 +23,9 @@
     </li>
   {% endfor %}
 </ul>
+<a href="{% url 'coursePlanner:newContact' course.id %}">
+  Add a new contact:</a>
 
-<!-- form to add a new contact -->
-<form action="{% url 'coursePlanner:newContact' course.id %}" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button name="submit">Add contact</button>
-</form> 
-<a href="{% url 'coursePlanner:course' course.id %}">
-  <button>Cancel</button>
-</a>
 
 <h3>Links</h3>
 <ul>
@@ -73,9 +66,17 @@
     </tr>
   {% endfor %}
 </table>
-<br>
-<a href="{% url 'coursePlanner:newAssessment' course.id %}">
-  Add a new assessment:
+
+<!-- form to add a new assessment-->
+<form action="{% url 'coursePlanner:newAssessment' course.id %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button name="submit">Add assessment</button>
+</form> 
+<a href="{% url 'coursePlanner:course' course.id %}">
+  <button>Cancel</button>
 </a>
+
+
 
 {% endblock content %}
