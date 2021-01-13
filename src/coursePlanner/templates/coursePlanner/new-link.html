@@ -1,40 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'coursePlanner/course.html' %}
 
-{% block content %}
 
-<h1>{{ course.courseCode }}: {{course.courseName }}</p>
-
-<h3>Course Contacts</h3>
-<ul>
-  {% for contact in contacts %}
-    <li>
-      {{ contact.role }}
-      <ul>
-        <li>
-        Name: {{ contact.name }}
-        </li>
-        <li>
-        Email: {{ contact.email }}
-        </li>
-        <li>
-        Location: {{ contact.location }}
-        </li>
-      </ul>
-    </li>
-  {% endfor %}
-</ul>
-
-<a href="{% url 'coursePlanner:newContact' course.id %}">
-  Add a new contact:</a>
-
-<h3>Links</h3>
-<ul>
-  {% for link in links %}
-    <li>
-      <a href={{link.link}}>{{ link.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+{% block linkForm %}
 
 <!-- form to add a new link -->
 <form action="{% url 'coursePlanner:newLink' course.id %}" method="post">
@@ -46,36 +13,4 @@
   <button>Cancel</button>
 </a>
 
-<h3>Queries</h3>
-<ul>
-  {% for query in queries %}
-    <li>
-      {{ query }}
-    </li>
-  {% endfor %}
-</ul>
-<a href="{% url 'coursePlanner:newQuery' course.id %}">
-  Add a new query:
-</a>
-
-<h3>Assessments</h3>
-<table border=1 width=50%>
-  <tr>
-    <th>Task</th>
-    <th>Weighting</th>
-    <th>My Grade</th>
-  </tr>
-  {% for assessment in assessments %}
-    <tr>
-      <td>{{ assessment.task }}</td>
-      <td>{{ assessment.weighting }}</td>
-      <td>{{ assessment.myGrade }}</td>
-    </tr>
-  {% endfor %}
-</table>
-<br>
-<a href="{% url 'coursePlanner:newAssessment' course.id %}">
-  Add a new assessment:
-</a>
-
-{% endblock content %}
+{% endblock linkForm %}

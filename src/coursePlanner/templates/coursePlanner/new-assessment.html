@@ -1,71 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'coursePlanner/course.html' %}
 
-{% block content %}
-
-<h1>{{ course.courseCode }}: {{course.courseName }}</p>
-
-<h3>Course Contacts</h3>
-<ul>
-  {% for contact in contacts %}
-    <li>
-      {{ contact.role }}
-      <ul>
-        <li>
-        Name: {{ contact.name }}
-        </li>
-        <li>
-        Email: {{ contact.email }}
-        </li>
-        <li>
-        Location: {{ contact.location }}
-        </li>
-      </ul>
-    </li>
-  {% endfor %}
-</ul>
-<a href="{% url 'coursePlanner:newContact' course.id %}">
-  Add a new contact:</a>
-
-
-<h3>Links</h3>
-<ul>
-  {% for link in links %}
-    <li>
-      <a href={{link.link}}>{{ link.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
-<a href="{% url 'coursePlanner:newLink' course.id %}">
-  Add a new link:
-</a>
-
-<h3>Queries</h3>
-<ul>
-  {% for query in queries %}
-    <li>
-      {{ query }}
-    </li>
-  {% endfor %}
-</ul>
-<a href="{% url 'coursePlanner:newQuery' course.id %}">
-  Add a new query:
-</a>
-
-<h3>Assessments</h3>
-<table border=1 width=50%>
-  <tr>
-    <th>Task</th>
-    <th>Weighting</th>
-    <th>My Grade</th>
-  </tr>
-  {% for assessment in assessments %}
-    <tr>
-      <td>{{ assessment.task }}</td>
-      <td>{{ assessment.weighting }}</td>
-      <td>{{ assessment.myGrade }}</td>
-    </tr>
-  {% endfor %}
-
+{% block assessmentForm %}
   <!-- form to add a new assessment-->
   <form action="{% url 'coursePlanner:newAssessment' course.id %}" method="post">
     {% csrf_token %}
@@ -73,15 +8,16 @@
       <td>{{ form.task }}</td>
       <td>{{ form.weighting }}</td>
       <td>{{ form.myGrade }}</td>
+
     </tr>
   </table>
-  
   <button name="submit">Add assessment</button>
   </form> 
 <a href="{% url 'coursePlanner:course' course.id %}">
   <button>Cancel</button>
 </a>
 
+{% endblock assessmentForm %}
 
 
-{% endblock content %}
+
