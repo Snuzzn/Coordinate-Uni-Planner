@@ -65,14 +65,19 @@
       <td>{{ assessment.myGrade }}</td>
     </tr>
   {% endfor %}
-</table>
 
-<!-- form to add a new assessment-->
-<form action="{% url 'coursePlanner:newAssessment' course.id %}" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
+  <!-- form to add a new assessment-->
+  <form action="{% url 'coursePlanner:newAssessment' course.id %}" method="post">
+    {% csrf_token %}
+    <tr>
+      <td>{{ form.task }}</td>
+      <td>{{ form.weighting }}</td>
+      <td>{{ form.myGrade }}</td>
+    </tr>
+  </table>
+  
   <button name="submit">Add assessment</button>
-</form> 
+  </form> 
 <a href="{% url 'coursePlanner:course' course.id %}">
   <button>Cancel</button>
 </a>
