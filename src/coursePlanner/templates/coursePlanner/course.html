@@ -40,10 +40,10 @@
 <ul>
   {% for link in links %}
     <li>
+      {% block editLinkForm %}
       <a href={{link.link}}>{{ link.title }}</a>
       <button><a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
         Edit</a></button>
-      {% block editLinkForm %}
       {% endblock editLinkForm %}
     </li>
 
@@ -62,7 +62,11 @@
 <ul>
   {% for query in queries %}
     <li>
+      {% block editQuery %}
       {{ query }}
+      <button><a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
+        Edit</a></button>
+      {% endblock editQuery %}
     </li>
   {% endfor %}
 </ul>

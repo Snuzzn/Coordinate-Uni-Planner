@@ -12,7 +12,7 @@
   </table>
 
   {% if totalWeighting > 100 %}
-    <p>Total weighting exceeds 100. Weightings should have a sum of 100.</p>
+    <p>Total weighting exceeds 100. Weightings should have a sum to 100.</p>
   {% endif %}
 
   
@@ -21,8 +21,6 @@
 <a href="{% url 'coursePlanner:course' course.id %}">
   <button>Cancel</button>
 </a></p>
-
-
 
 {% endblock assessmentForm %}
 

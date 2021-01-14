@@ -1,0 +1,19 @@
+{% extends 'coursePlanner/course.html' %}
+
+{% block editQuery %}
+
+  {% if query.id == queryToEdit.id %}  
+    <!-- bring up form to edit query-->
+    <form action="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}" method="post">
+      {% include 'coursePlanner/form-edit.html' %}
+
+
+  {% else %}
+    {{ query }}
+    <button><a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
+    Edit</a></button>
+
+  {% endif %}
+ 
+{% endblock editQuery %}
+

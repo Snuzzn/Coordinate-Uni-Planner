@@ -6,11 +6,7 @@
 <!-- form to add a new link -->
 <form action="{% url 'coursePlanner:newLink' course.id %}" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button name="submit">Add link</button>
-</form> 
-<a href="{% url 'coursePlanner:course' course.id %}">
-  <button>Cancel</button>
-</a>
+  {% include 'coursePlanner/form-add.html' %}
+
 
 {% endblock linkForm %}

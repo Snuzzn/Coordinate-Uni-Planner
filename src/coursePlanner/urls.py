@@ -12,4 +12,5 @@ urlpatterns = [
     path('<int:course_id>/new-query/', views.newQuery, name='newQuery'),
     path('<int:course_id>/new-assessment/', views.newAssessment, name='newAssessment'),
     path('<int:course_id>/edit-link/<int:link_id>/', views.editLink, name='editLink'),
+    path('<int:course_id>/edit-query/<int:query_id>/', views.editQuery, name='editQuery'),
 ]

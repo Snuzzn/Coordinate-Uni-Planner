@@ -223,3 +223,36 @@ def editLink(request, course_id, link_id):
     }
     templateName = 'coursePlanner/edit-link.html'
     return render(request, templateName, context)
+    
+def editQuery(request, course_id, query_id):
+    """Edit an existing link."""
+    query = Query.objects.get(id=query_id)
+    course = Course.objects.get(id=course_id)
+    contacts = course.contact_set.all()
+    links = course.link_set.all()
+    queries = course.query_set.all()
+    assessments = course.assessment_set.all()
+
+ 
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry.
+        form = QueryForm(instance=query)
+    else:
+        # POST data submitted; process data.
+        form = QueryForm(instance=query, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('coursePlanner:course', course_id=course_id)
+
+    # Display the blank or invalid form
+    context = {
+        'course': course, 
+        'contacts': contacts,
+        'links': links,
+        'queries': queries,
+        'assessments': assessments, 
+        'form': form,
+        'queryToEdit': query,
+    }
+    templateName = 'coursePlanner/edit-query.html'
+    return render(request, templateName, context)
