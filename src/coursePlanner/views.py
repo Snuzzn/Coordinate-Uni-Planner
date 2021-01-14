@@ -136,19 +136,14 @@ def newAssessment(request, course_id):
     links = course.link_set.all()
     queries = course.query_set.all()
     assessments = course.assessment_set.all()
-    totalWeighting = 0
     
     # Add a new assessment
     form = AssessmentForm(request.POST or None)
     if form.is_valid():
         newAssessment = form.save(commit=False)
-        
-        # check that assessments don't add to more than 100 in weighting
-        totalWeighting = findTotalWeighting(assessments, newAssessment)
-        if totalWeighting <= 100:
-            newAssessment.course = course
-            newAssessment.save()
-            return redirect('coursePlanner:course', course_id=course_id)
+        newAssessment.course = course
+        newAssessment.save()
+        return redirect('coursePlanner:course', course_id=course_id)
 
     # Display the blank or invalid form
     context = {
@@ -157,17 +152,10 @@ def newAssessment(request, course_id):
         'links': links,
         'queries': queries,
         'assessments': assessments, 
-        'totalWeighting': totalWeighting,
         'form': form,
         }
     templateName = 'coursePlanner/new-assessment.html'
     return render(request, templateName, context)
-
-def findTotalWeighting(assessments, newAssessment):
-    total = 0
-    for assessment in assessments:
-        total += assessment.weighting
-    return total + newAssessment.weighting
 
 def editContact(request, course_id, contact_id):
     """Edit an existing contact."""
@@ -204,7 +192,6 @@ def editLink(request, course_id, link_id):
     links = course.link_set.all()
     queries = course.query_set.all()
     assessments = course.assessment_set.all()
- 
 
     form = LinkForm(request.POST or None, instance=link)
     if form.is_valid():
@@ -261,25 +248,11 @@ def editAssessment(request, course_id, assessment_id):
     links = course.link_set.all()
     queries = course.query_set.all()
     assessments = course.assessment_set.all()
-    totalWeighting = 0
-    oldWeighting = assessment.weighting # before a new weighting is added in form
-    if request.method != 'POST':
-        # Initial request; pre-fill form with the current entry.
-        form = AssessmentForm(instance=assessment)
-    else:
-        # POST data submitted; process data.
-        form = AssessmentForm(instance=assessment, data=request.POST)
-        if form.is_valid():
-            newAssessment = form.save(commit=False)
-            # check that assessments don't add to more than 100 in weighting
-            totalWeighting = findTotalWeighting(assessments, newAssessment) - oldWeighting
-            # print(totalWeighting)
-            print(assessment.weighting)
 
-            if totalWeighting <= 100:
-                newAssessment.course = course
-                newAssessment.save()
-                return redirect('coursePlanner:course', course_id=course_id)
+    form = AssessmentForm(request.POST or None, instance=assessment)
+    if form.is_valid():
+        form.save()
+        return redirect('coursePlanner:course', course_id=course_id)
 
     # Display the blank or invalid form
     context = {
@@ -290,8 +263,6 @@ def editAssessment(request, course_id, assessment_id):
         'assessments': assessments, 
         'form': form,
         'assessmentToEdit': assessment,
-        'totalWeighting': totalWeighting,
-
     }
     templateName = 'coursePlanner/edit-assessment.html'
     return render(request, templateName, context)
