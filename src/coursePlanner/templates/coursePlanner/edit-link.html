@@ -10,8 +10,8 @@
 
   {% else %}
     <a href={{link.link}}>{{ link.title }}</a>
-    <button><a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
-    Edit</a></button>
+    <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
+    <button>Edit</button></a>
 
   {% endif %}
  

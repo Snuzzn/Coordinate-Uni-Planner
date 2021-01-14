@@ -10,8 +10,8 @@
 
   {% else %}
     {{ query }}
-    <button><a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
-    Edit</a></button>
+    <a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
+      <button>Edit</button></a>
 
   {% endif %}
  

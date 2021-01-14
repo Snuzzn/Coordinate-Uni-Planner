@@ -1,0 +1,37 @@
+{% extends 'coursePlanner/course.html' %}
+
+{% block editAssessment %}
+
+  {% if assessment.id == assessmentToEdit.id %}  
+
+    <!-- bring up form to edit assessment -->
+    <form action="{% url 'coursePlanner:editAssessment' course_id=course.id assessment_id=assessment.id %}" method="post">
+
+      {% csrf_token %}
+      <tr>
+        <td>{{ form.task }}</td>
+        <td>{{ form.weighting }}%</td>
+        <td>{{ form.myGrade }}%</td>
+
+        <td><button name="submit">Make changes</button></td>
+        <td><button>delete</button></td>
+
+        
+        {{ form.errors }}
+
+      </form> 
+
+
+  {% else %}
+    <td>{{ assessment.task }}</td>
+    <td>{{ assessment.weighting }}%</td>
+    <td>{{ assessment.myGrade }}%</td>
+    <td><a href="{% url 'coursePlanner:editAssessment' course_id=course.id assessment_id=assessment.id %}">
+     <button>Edit</button></a></td>
+    <td><button>delete</button></td>
+
+  {% endif %}
+
+
+{% endblock editAssessment %}
+

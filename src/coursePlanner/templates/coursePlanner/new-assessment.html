@@ -6,16 +6,13 @@
     {% csrf_token %}
     <tr>
       <td>{{ form.task }}</td>
-      <td>{{ form.weighting }}</td>
-      <td>{{ form.myGrade }}</td>
+      <td>{{ form.weighting }}%</td>
+      <td>{{ form.myGrade }}%</td>
     </tr>
   </table>
 
-  {% if totalWeighting > 100 %}
-    <p>Total weighting exceeds 100. Weightings should have a sum to 100.</p>
-  {% endif %}
+  {{ form.errors }}
 
-  
   <p><button name="submit">Add assessment</button>
   </form> 
 <a href="{% url 'coursePlanner:course' course.id %}">

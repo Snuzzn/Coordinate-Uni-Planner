@@ -13,7 +13,8 @@
 
 <h3>Course Contacts</h3>
 <ul>
-  {% for contact in contacts %}
+  {% for contact in contacts %}     
+    {% block editContact %}
     <li>
       {{ contact.role }}
       <ul>
@@ -28,6 +29,9 @@
         </li>
       </ul>
     </li>
+    <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
+     <button>Edit</button></a>
+    {% endblock editContact %}
   {% endfor %}
 </ul>
 {% block contactForm %}
@@ -42,39 +46,20 @@
     <li>
       {% block editLinkForm %}
       <a href={{link.link}}>{{ link.title }}</a>
-      <button><a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
-        Edit</a></button>
+      <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
+        <button>Edit</button></a>
       {% endblock editLinkForm %}
     </li>
 
   {% endfor %}
 </ul>   
  
-
-
 {% block linkForm %}
 <p><a href="{% url 'coursePlanner:newLink' course.id %}">
   Add a new link:
 </a></p>
 {% endblock linkForm %}
 
-<h3>Queries</h3>
-<ul>
-  {% for query in queries %}
-    <li>
-      {% block editQuery %}
-      {{ query }}
-      <button><a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
-        Edit</a></button>
-      {% endblock editQuery %}
-    </li>
-  {% endfor %}
-</ul>
-{% block queryForm %}
-<a href="{% url 'coursePlanner:newQuery' course.id %}">
-  Add a new query:
-</a>
-{% endblock queryForm %}
 
 <h3>Assessments</h3>
 <table border=1>
@@ -85,18 +70,42 @@
   </tr>
   {% for assessment in assessments %}
     <tr>
-      <td>{{ assessment.task }}</td>
-      <td>{{ assessment.weighting }}</td>
-      <td>{{ assessment.myGrade }}</td>
-      <td><button>delete</button></td>
-      <td><button>edit</button></td>
+      {% block editAssessment %}
+        <td>{{ assessment.task }}</td>
+        <td>{{ assessment.weighting }}%</td>
+        <td>{{ assessment.myGrade }}%</td>
+        <td><a href="{% url 'coursePlanner:editAssessment' course_id=course.id assessment_id=assessment.id %}">
+        <button>Edit</button></a></td>
+        <td><button>delete</button></td>  
+      {% endblock editAssessment %}
     </tr>
   {% endfor %}
+
 {% block assessmentForm %}
 </table>
 <p><a href="{% url 'coursePlanner:newAssessment' course.id %}">
   Add a new assessment:
 </a></p>
 {% endblock assessmentForm %}
+
+
+<h3>Queries</h3>
+<ul>
+  {% for query in queries %}
+    <li>
+      {% block editQuery %}
+      {{ query }}
+      <a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
+        <button>Edit</button></a>
+      {% endblock editQuery %}
+    </li>
+  {% endfor %}
+</ul>
+{% block queryForm %}
+<a href="{% url 'coursePlanner:newQuery' course.id %}">
+  Add a new query:
+</a>
+{% endblock queryForm %}
+
 
 {% endblock content %}
