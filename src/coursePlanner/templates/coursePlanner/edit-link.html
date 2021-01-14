@@ -1,0 +1,16 @@
+{% extends 'coursePlanner/course.html' %}
+
+{% block editLinkForm %}
+  {% if link.id == linkToEdit.id %} 
+    <!-- form to add a new link -->
+    <form action="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button name="submit">Make change</button>
+    </form> 
+    <a href="{% url 'coursePlanner:course' course.id %}">
+      <button>Cancel</button>
+    </a>
+  {% endif %}
+{% endblock editLinkForm %}
+

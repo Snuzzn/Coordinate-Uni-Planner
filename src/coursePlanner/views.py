@@ -45,6 +45,7 @@ def course(request, course_id):
     links = course.link_set.all()
     queries = course.query_set.all()
     assessments = course.assessment_set.all()
+
     context = {
         'course': course, 
         'contacts': contacts,
@@ -74,7 +75,7 @@ def newContact(request, course_id):
             newContact.course = course
             newContact.save()
             return redirect('coursePlanner:course', course_id=course_id)
-    
+        
     # Display the blank or invalid form
     context = {
         'course': course, 
@@ -157,8 +158,8 @@ def newAssessment(request, course_id):
     links = course.link_set.all()
     queries = course.query_set.all()
     assessments = course.assessment_set.all()
-    
-    # Add a new contact
+    totalWeighting = 0
+    # Add a new assessment
     if request.method != 'POST':
         # No data submitted; create a blank form.
         form = AssessmentForm()
@@ -167,10 +168,49 @@ def newAssessment(request, course_id):
         form = AssessmentForm(data=request.POST)
         if form.is_valid():
             newAssessment = form.save(commit=False)
-            newAssessment.course = course
-            newAssessment.save()
+            
+            # check that assessments don't add to more than 100 in weighting
+            total = 0
+            for assessment in assessments:
+                total += assessment.weighting
+            totalWeighting = total + newAssessment.weighting
+            if totalWeighting <= 100:
+                newAssessment.course = course
+                newAssessment.save()
+                return redirect('coursePlanner:course', course_id=course_id)
+    # Display the blank or invalid form
+    context = {
+        'course': course, 
+        'contacts': contacts,
+        'links': links,
+        'queries': queries,
+        'assessments': assessments, 
+        'totalWeighting': totalWeighting,
+        'form': form,
+        }
+    templateName = 'coursePlanner/new-assessment.html'
+    return render(request, templateName, context)
+
+def editLink(request, course_id, link_id):
+    """Edit an existing link."""
+    link = Link.objects.get(id=link_id)
+    course = Course.objects.get(id=course_id)
+    contacts = course.contact_set.all()
+    links = course.link_set.all()
+    queries = course.query_set.all()
+    assessments = course.assessment_set.all()
+
+ 
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry.
+        form = LinkForm(instance=link)
+    else:
+        # POST data submitted; process data.
+        form = LinkForm(instance=link, data=request.POST)
+        if form.is_valid():
+            form.save()
             return redirect('coursePlanner:course', course_id=course_id)
-    
+
     # Display the blank or invalid form
     context = {
         'course': course, 
@@ -179,6 +219,7 @@ def newAssessment(request, course_id):
         'queries': queries,
         'assessments': assessments, 
         'form': form,
-        }
-    templateName = 'coursePlanner/new-assessment.html'
+        'linkToEdit': link,
+    }
+    templateName = 'coursePlanner/edit-link.html'
     return render(request, templateName, context)

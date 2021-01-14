@@ -8,14 +8,21 @@
       <td>{{ form.task }}</td>
       <td>{{ form.weighting }}</td>
       <td>{{ form.myGrade }}</td>
-
     </tr>
   </table>
-  <button name="submit">Add assessment</button>
+
+  {% if totalWeighting > 100 %}
+    <p>Total weighting exceeds 100. Weightings should have a sum of 100.</p>
+  {% endif %}
+
+  
+  <p><button name="submit">Add assessment</button>
   </form> 
 <a href="{% url 'coursePlanner:course' course.id %}">
   <button>Cancel</button>
-</a>
+</a></p>
+
+
 
 {% endblock assessmentForm %}
 

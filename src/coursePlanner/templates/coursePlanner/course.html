@@ -1,3 +1,10 @@
+<!-- <style>
+  .extra {
+    border: 0px solid black;
+  }
+</style> -->
+
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -23,9 +30,9 @@
     </li>
   {% endfor %}
 </ul>
+{% block contactForm %}
 <a href="{% url 'coursePlanner:newContact' course.id %}">
   Add a new contact:</a>
-{% block contactForm %}
 {% endblock contactForm %}
 
 
@@ -34,13 +41,21 @@
   {% for link in links %}
     <li>
       <a href={{link.link}}>{{ link.title }}</a>
+      <button><a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
+        Edit</a></button>
+      {% block editLinkForm %}
+      {% endblock editLinkForm %}
     </li>
+
   {% endfor %}
-</ul>
-<a href="{% url 'coursePlanner:newLink' course.id %}">
-  Add a new link:
-</a>
+</ul>   
+ 
+
+
 {% block linkForm %}
+<p><a href="{% url 'coursePlanner:newLink' course.id %}">
+  Add a new link:
+</a></p>
 {% endblock linkForm %}
 
 <h3>Queries</h3>
@@ -51,14 +66,14 @@
     </li>
   {% endfor %}
 </ul>
+{% block queryForm %}
 <a href="{% url 'coursePlanner:newQuery' course.id %}">
   Add a new query:
 </a>
-{% block queryForm %}
 {% endblock queryForm %}
 
 <h3>Assessments</h3>
-<table border=1 width=50%>
+<table border=1>
   <tr>
     <th>Task</th>
     <th>Weighting</th>
@@ -69,14 +84,15 @@
       <td>{{ assessment.task }}</td>
       <td>{{ assessment.weighting }}</td>
       <td>{{ assessment.myGrade }}</td>
+      <td><button>delete</button></td>
+      <td><button>edit</button></td>
     </tr>
   {% endfor %}
 {% block assessmentForm %}
 </table>
-<br>
-<a href="{% url 'coursePlanner:newAssessment' course.id %}">
+<p><a href="{% url 'coursePlanner:newAssessment' course.id %}">
   Add a new assessment:
-</a>
+</a></p>
 {% endblock assessmentForm %}
 
 {% endblock content %}
