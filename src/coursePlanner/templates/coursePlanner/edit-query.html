@@ -3,8 +3,9 @@
 {% block editQuery %}
 
   {% if query.id == queryToEdit.id %}  
-    <!-- bring up form to edit query-->
+  
     <form action="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}" method="post">
+      {% csrf_token %}
       {% include 'coursePlanner/form-edit.html' %}
 
 

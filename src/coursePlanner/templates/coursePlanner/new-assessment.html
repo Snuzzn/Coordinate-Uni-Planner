@@ -1,6 +1,6 @@
 {% extends 'coursePlanner/course.html' %}
 
-{% block assessmentForm %}
+{% block newAssessment %}
   <!-- form to add a new assessment-->
   <form action="{% url 'coursePlanner:newAssessment' course.id %}" method="post">
     {% csrf_token %}
@@ -19,7 +19,7 @@
   <button>Cancel</button>
 </a></p>
 
-{% endblock assessmentForm %}
+{% endblock newAssessment %}
 
 
 

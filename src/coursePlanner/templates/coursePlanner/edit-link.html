@@ -1,10 +1,11 @@
 {% extends 'coursePlanner/course.html' %}
 
-{% block editLinkForm %}
+{% block editLink %}
 
   {% if link.id == linkToEdit.id %}  
-    <!-- bring up form to edit link -->
+  
     <form action="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}" method="post">
+      {% csrf_token %}
       {% include 'coursePlanner/form-edit.html' %}
 
 
@@ -15,5 +16,5 @@
 
   {% endif %}
  
-{% endblock editLinkForm %}
+{% endblock editLink %}
 

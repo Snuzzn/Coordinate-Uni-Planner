@@ -18,15 +18,9 @@
     <li>
       {{ contact.role }}
       <ul>
-        <li>
-        Name: {{ contact.name }}
-        </li>
-        <li>
-        Email: {{ contact.email }}
-        </li>
-        <li>
-        Location: {{ contact.location }}
-        </li>
+        <li>Name: {{ contact.name }}</li>
+        <li>Email: {{ contact.email }}</li>
+        <li>Location: {{ contact.location }}</li>
       </ul>
     </li>
     <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
@@ -34,31 +28,31 @@
     {% endblock editContact %}
   {% endfor %}
 </ul>
-{% block contactForm %}
+
+{% block newContact %}
 <a href="{% url 'coursePlanner:newContact' course.id %}">
   Add a new contact:</a>
-{% endblock contactForm %}
+{% endblock newContact %}
 
 
 <h3>Links</h3>
 <ul>
   {% for link in links %}
     <li>
-      {% block editLinkForm %}
+      {% block editLink %}
       <a href={{link.link}}>{{ link.title }}</a>
       <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
         <button>Edit</button></a>
-      {% endblock editLinkForm %}
+      {% endblock editLink %}
     </li>
-
   {% endfor %}
 </ul>   
  
-{% block linkForm %}
+{% block newLink %}
 <p><a href="{% url 'coursePlanner:newLink' course.id %}">
   Add a new link:
 </a></p>
-{% endblock linkForm %}
+{% endblock newLink %}
 
 
 <h3>Assessments</h3>
@@ -81,12 +75,12 @@
     </tr>
   {% endfor %}
 
-{% block assessmentForm %}
+{% block newAssessment %}
 </table>
 <p><a href="{% url 'coursePlanner:newAssessment' course.id %}">
   Add a new assessment:
 </a></p>
-{% endblock assessmentForm %}
+{% endblock newAssessment %}
 
 
 <h3>Queries</h3>
@@ -101,11 +95,12 @@
     </li>
   {% endfor %}
 </ul>
-{% block queryForm %}
+
+{% block newQuery %}
 <a href="{% url 'coursePlanner:newQuery' course.id %}">
   Add a new query:
 </a>
-{% endblock queryForm %}
+{% endblock newQuery %}
 
 
 {% endblock content %}

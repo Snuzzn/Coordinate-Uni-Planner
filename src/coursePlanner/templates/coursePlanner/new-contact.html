@@ -1,9 +1,9 @@
 {% extends 'coursePlanner/course.html' %}
 
-{% block contactForm %}
+{% block newContact %}
 <!-- form to add a new contact -->
 <form action="{% url 'coursePlanner:newContact' course.id %}" method="post">
   {% csrf_token %}
   {% include 'coursePlanner/form-add.html' %}
 
-{% endblock contactForm %}
+{% endblock newContact %}

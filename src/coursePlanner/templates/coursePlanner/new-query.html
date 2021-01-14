@@ -1,6 +1,6 @@
 {% extends 'coursePlanner/course.html' %}
 
-{% block queryForm %}
+{% block newQuery %}
 
 <!-- form to add a new query-->
 <form action="{% url 'coursePlanner:newQuery' course.id %}" method="post">
@@ -8,4 +8,4 @@
   {% include 'coursePlanner/form-add.html' %}
 
 
-{% endblock queryForm %}
+{% endblock newQuery %}

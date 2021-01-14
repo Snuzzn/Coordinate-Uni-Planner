@@ -3,23 +3,18 @@
 {% block editContact %}
 
   {% if contact.id == contactToEdit.id %}  
-    <!-- bring up form to edit contact -->
+
     <form action="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}" method="post">
+      {% csrf_token %}
       {% include 'coursePlanner/form-edit.html' %}
 
   {% else %}
     <li>
       {{ contact.role }}
       <ul>
-        <li>
-        Name: {{ contact.name }}
-        </li>
-        <li>
-        Email: {{ contact.email }}
-        </li>
-        <li>
-        Location: {{ contact.location }}
-        </li>
+        <li>Name: {{ contact.name }}</li>
+        <li>Email: {{ contact.email }}</li>
+        <li>Location: {{ contact.location }}</li>
       </ul>
     </li>
     <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
