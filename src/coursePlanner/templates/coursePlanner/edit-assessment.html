@@ -12,7 +12,7 @@
         <td>{{ form.myGrade }}%</td>
 
         <td><button name="submit">Make changes</button></td>
-        <td><button>delete</button></td>
+
 
         {{ form.errors }}
 
@@ -25,7 +25,6 @@
     <td>{{ assessment.myGrade }}%</td>
     <td><a href="{% url 'coursePlanner:editAssessment' course_id=course.id assessment_id=assessment.id %}">
      <button>Edit</button></a></td>
-    <td><button>delete</button></td>
 
   {% endif %}
 

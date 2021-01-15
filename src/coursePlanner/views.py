@@ -12,6 +12,10 @@ from .forms import (
     LinkForm,
     QueryForm,
     AssessmentForm,
+    DeleteContactForm,
+    DeleteLinkForm,
+    DeleteQueryForm,
+    DeleteAssessmentForm,
 )
 
 def courses(request):
@@ -265,4 +269,108 @@ def editAssessment(request, course_id, assessment_id):
         'assessmentToEdit': assessment,
     }
     templateName = 'coursePlanner/edit-assessment.html'
+    return render(request, templateName, context)
+    
+def deleteContact(request, course_id, contact_id):
+    course = Course.objects.get(id=course_id)
+    contacts = course.contact_set.all()
+    links = course.link_set.all()
+    queries = course.query_set.all()
+    assessments = course.assessment_set.all()
+    contactToDelete = Contact.objects.get(id=contact_id)
+    
+    form = DeleteContactForm(request.POST or None)
+    if form.is_valid():
+        contactToDelete.delete()
+        return redirect('coursePlanner:course', course_id=course_id)
+        
+    # Display the blank or invalid form
+    context = {
+        'course': course, 
+        'contacts': contacts,
+        'links': links,
+        'queries': queries,
+        'assessments': assessments, 
+        'form': form,
+        'contactToDelete': contactToDelete,
+    }
+    templateName = 'coursePlanner/delete-contact.html'
+    return render(request, templateName, context)
+
+def deleteLink(request, course_id, link_id):
+    course = Course.objects.get(id=course_id)
+    contacts = course.contact_set.all()
+    links = course.link_set.all()
+    queries = course.query_set.all()
+    assessments = course.assessment_set.all()
+    linkToDelete = Link.objects.get(id=link_id)
+    
+    form = DeleteLinkForm(request.POST or None)
+    if form.is_valid():
+        linkToDelete.delete()
+        return redirect('coursePlanner:course', course_id=course_id)
+        
+    # Display the blank or invalid form
+    context = {
+        'course': course, 
+        'contacts': contacts,
+        'links': links,
+        'queries': queries,
+        'assessments': assessments, 
+        'form': form,
+        'linkToDelete': linkToDelete,
+    }
+    templateName = 'coursePlanner/delete-link.html'
+    return render(request, templateName, context)
+
+def deleteQuery(request, course_id, query_id):
+    course = Course.objects.get(id=course_id)
+    contacts = course.contact_set.all()
+    links = course.link_set.all()
+    queries = course.query_set.all()
+    assessments = course.assessment_set.all()
+    queryToDelete = Query.objects.get(id=query_id)
+    
+    form = DeleteQueryForm(request.POST or None)
+    if form.is_valid():
+        queryToDelete.delete()
+        return redirect('coursePlanner:course', course_id=course_id)
+        
+    # Display the blank or invalid form
+    context = {
+        'course': course, 
+        'contacts': contacts,
+        'links': links,
+        'queries': queries,
+        'assessments': assessments, 
+        'form': form,
+        'queryToDelete': queryToDelete,
+    }
+    templateName = 'coursePlanner/delete-query.html'
+    return render(request, templateName, context)
+
+def deleteAssessment(request, course_id, assessment_id):
+    course = Course.objects.get(id=course_id)
+    contacts = course.contact_set.all()
+    links = course.link_set.all()
+    queries = course.query_set.all()
+    assessments = course.assessment_set.all()
+    assessmentToDelete = Assessment.objects.get(id=assessment_id)
+    
+    form = DeleteAssessmentForm(request.POST or None)
+    if form.is_valid():
+        assessmentToDelete.delete()
+        return redirect('coursePlanner:course', course_id=course_id)
+        
+    # Display the blank or invalid form
+    context = {
+        'course': course, 
+        'contacts': contacts,
+        'links': links,
+        'queries': queries,
+        'assessments': assessments, 
+        'form': form,
+        'assessmentToDelete': assessmentToDelete,
+    }
+    templateName = 'coursePlanner/delete-assessment.html'
     return render(request, templateName, context)

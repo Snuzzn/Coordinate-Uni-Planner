@@ -1,0 +1,19 @@
+{% extends 'coursePlanner/course.html' %}
+
+{% block deleteAssessment %}
+
+  {% if assessment == assessmentToDelete %}
+    <form action="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}" method="post">
+      {% csrf_token %}
+        <td><button type="submit">Confirm</button></td>
+        <td><a href="{% url 'coursePlanner:course' course.id %}">
+          <button type="button">Cancel</button></a></td>
+      </form>
+
+  {% else %}
+    <td><a href="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}">
+      <button>Delete</button></a></td>
+
+  {% endif %}
+
+{% endblock deleteAssessment %}

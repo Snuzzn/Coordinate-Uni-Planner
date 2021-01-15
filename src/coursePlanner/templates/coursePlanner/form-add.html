@@ -1,6 +1,7 @@
 {{ form.as_p }}
-<button name="submit">Add</button>
-</form> 
-<a href="{% url 'coursePlanner:course' course.id %}">
-<button>Cancel</button>
-</a>
+<div>
+  <button type="submit">Add</button>
+  </form> 
+  <a href="{% url 'coursePlanner:course' course.id %}">
+  <button type="button">Cancel</button></a>
+</div>

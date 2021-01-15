@@ -26,12 +26,18 @@
     <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
      <button>Edit</button></a>
     {% endblock editContact %}
+
+    {% block deleteContact %}
+    <a href="{% url 'coursePlanner:deleteContact' course_id=course.id contact_id=contact.id %}">
+      <button>Delete</button></a>
+    {% endblock deleteContact %}
+
   {% endfor %}
 </ul>
 
 {% block newContact %}
 <a href="{% url 'coursePlanner:newContact' course.id %}">
-  Add a new contact:</a>
+<button>Add a new contact</button></a>
 {% endblock newContact %}
 
 
@@ -44,13 +50,18 @@
       <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
         <button>Edit</button></a>
       {% endblock editLink %}
+
+      {% block deleteLink %}
+        <a href="{% url 'coursePlanner:deleteLink' course_id=course.id link_id=link.id %}">
+        <button>Delete</button></a>
+      {% endblock deleteLink %}
     </li>
   {% endfor %}
 </ul>   
  
 {% block newLink %}
 <p><a href="{% url 'coursePlanner:newLink' course.id %}">
-  Add a new link:
+<button>Add a new link</button>
 </a></p>
 {% endblock newLink %}
 
@@ -69,17 +80,19 @@
         <td>{{ assessment.weighting }}%</td>
         <td>{{ assessment.myGrade }}%</td>
         <td><a href="{% url 'coursePlanner:editAssessment' course_id=course.id assessment_id=assessment.id %}">
-        <button>Edit</button></a></td>
-        <td><button>delete</button></td>  
+          <button>Edit</button></a></td>
       {% endblock editAssessment %}
+      {% block deleteAssessment %}
+        <td><a href="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}">
+          <button>Delete</button></a></td>  
+      {% endblock deleteAssessment %}
     </tr>
   {% endfor %}
 
 {% block newAssessment %}
 </table>
 <p><a href="{% url 'coursePlanner:newAssessment' course.id %}">
-  Add a new assessment:
-</a></p>
+<button>Add a new assessment</button></a></p>
 {% endblock newAssessment %}
 
 
@@ -92,14 +105,18 @@
       <a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
         <button>Edit</button></a>
       {% endblock editQuery %}
+      
+      {% block deleteQuery %}
+      <a href="{% url 'coursePlanner:deleteQuery' course_id=course.id query_id=query.id %}">
+        <button>Delete</button></a>
+      {% endblock deleteQuery %}
     </li>
   {% endfor %}
 </ul>
 
 {% block newQuery %}
 <a href="{% url 'coursePlanner:newQuery' course.id %}">
-  Add a new query:
-</a>
+<button>Add a new query</button></a>
 {% endblock newQuery %}
 
 

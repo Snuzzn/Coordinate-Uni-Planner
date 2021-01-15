@@ -1,3 +1,4 @@
+from typing import NewType
 from django import forms
 
 from .models import (
@@ -82,3 +83,23 @@ class AssessmentForm(forms.ModelForm):
             raise forms.ValidationError("Total weighting must not exceed 100")
         else:
             return weighting
+
+class DeleteContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = []
+
+class DeleteLinkForm(forms.ModelForm):
+    class Meta:
+        model = Link 
+        fields = []
+
+class DeleteAssessmentForm(forms.ModelForm):
+    class Meta:
+        model = Assessment 
+        fields = []
+        
+class DeleteQueryForm(forms.ModelForm):
+    class Meta:
+        model = Query 
+        fields = []
