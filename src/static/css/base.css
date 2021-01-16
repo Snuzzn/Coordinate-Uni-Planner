@@ -1,0 +1,21 @@
+:root {
+    /* border radius */
+    --radius: 0.2rem;
+
+    /*   color variables */
+    --clr-primary: #5930ff;
+    --clr-primary-hover: #29e6a7;
+    --clr-primary-dark: #039d69;
+    --clr-gray100: #f9fbff;
+    --clr-gray150: #f4f6fb;
+    --clr-gray200: #eef1f6;
+    --clr-gray300: #e1e5ee;
+    --clr-gray400: #767b91;
+    --clr-gray500: #4f546c;
+
+}
+
+
+
+body {
+}
