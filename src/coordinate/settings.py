@@ -29,11 +29,16 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# My settings
+LOGIN_URL = 'users:login'
+
 # Application definition
 
 INSTALLED_APPS = [
     # My Apps
     'coursePlanner',
+    'users',
+
 
     # Default Django Apps
     'django.contrib.admin',
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -52,9 +58,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'coordinate.urls'
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static/"),
+)
 
 TEMPLATES = [
     {

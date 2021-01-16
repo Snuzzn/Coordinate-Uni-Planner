@@ -78,16 +78,28 @@
       {% block editAssessment %}
         <td>{{ assessment.task }}</td>
         <td>{{ assessment.weighting }}%</td>
+        {% if  assessment.myGrade is None %} 
+        <td></td> 
+        {% else %}
         <td>{{ assessment.myGrade }}%</td>
+        {% endif %} 
+
         <td><a href="{% url 'coursePlanner:editAssessment' course_id=course.id assessment_id=assessment.id %}">
           <button>Edit</button></a></td>
       {% endblock editAssessment %}
+
       {% block deleteAssessment %}
         <td><a href="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}">
           <button>Delete</button></a></td>  
       {% endblock deleteAssessment %}
     </tr>
   {% endfor %}
+
+  <ul>
+    {% for message in assessmentMessages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
 
 {% block newAssessment %}
 </table>
