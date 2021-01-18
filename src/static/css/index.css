@@ -1,0 +1,32 @@
+
+/* @keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+} */
+
+@keyframes stretchOut {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    40% {
+        transform: rotate(50deg)
+    }
+
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.logo {
+    animation: 700ms ease-out stretchOut;
+}
+/* 
+.navbar {
+    animation: 500ms ease-out slideIn;
+} */

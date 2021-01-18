@@ -8,45 +8,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coordinate</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+  {% block head %} {% endblock head %}
 </head>
 
 <body>
-  <p>
-  <a href="/">Home</a>
-  <a href="{% url 'coursePlanner:courses' %}">Courses</a>
+  <nav class="navbar">
 
-  {% if user.is_authenticated %}  
-    Hello, {{ user.username }}
-    <a href="{% url 'users:logout' %}">Logout</a>
-  {% else %}
-    <a href="{% url 'users:register' %}">Register</a>
-    <a href="{% url 'users:login' %}">Login</a>
-  {% endif %}
-  
-  </p>
-  <!-- <nav class="nav">
-    <svg class="nav__expand" viewBox="0 0 256 512" width="100" title="angle-right">
-      <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z" />
-    </svg>
-    <ul class="nav__list">
-      <li class="nav__listitem">
-        <a href="#">
-          <p>Hello</p>
-        </a>
-        <a href="#">
-          <p>Bye</p>
+    <ul class="navbar-nav">
+
+      <li class="nav-item logo">
+        <a href="/" class="nav-link">
+          {% include 'coordinateLogo.html' %}
         </a>
       </li>
-    </ul> -->
 
+      <li class="nav-item courseMenu"> 
+        <a href="{% url 'coursePlanner:courses' %}" class="nav-link">
+          {% include 'courseIcon.html' %}
+        </a>
+        <ul class="courseMenuContent">
+          <h2>Courses</h2>
+          {% for course in courses %}
+          <li>
+            <a href="{% url 'coursePlanner:course' course.id %}" class="course">{{ course }}</a>
+          </li>
+          {% endfor %}
+          <li>
+            <a href="{% url 'coursePlanner:newCourse' %}">
+              {% include 'addBtn.html' %}
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item termMenu"> 
+        <a href="#" class="nav-link">
+          {% include 'termIcon.html' %}
+        </a>
+      </li>
+
+      {% if user.is_authenticated %}  
+      <li class="nav-item">
+        {{ user.username }}
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'users:logout' %}">Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a href="{% url 'users:register' %}">Register</a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'users:login' %}">Login</a>
+      </li> 
+    {% endif %}
+    </ul>
   </nav>
-  {% block page_header %} {% endblock page_header %}
-  {% block content %}{% endblock content %}
 
+  <main>
+
+    {% block page_header %}{% endblock page_header %}
+    {% block content %}{% endblock content %}
+  </main>
+  
+ 
   
 
-
+  
+  <script src="{% static 'css/base.js' %}""async defer></script>
 
 </body>
 

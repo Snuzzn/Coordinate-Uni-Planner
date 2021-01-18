@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+{% endblock head %}
+
 {% block page_header %}
 <h1>Coordinate</h1>
 {% endblock page_header %}
