@@ -61,14 +61,14 @@
   
         {% if user.is_authenticated %}  
         <div class="nav-item">
-            <p>{{ user.username }}</p>
-            <p><a href="{% url 'users:logout' %}">Logout</a></p>
+            <div class="username">{{ user.username }}</div>
+            <div><a href="{% url 'users:logout' %}" class="user-btn">Logout</a></div>
         </div>
         
         {% else %}
         <div class="nav-item">
-          <p><a href="{% url 'users:register' %}">Register</a></p>
-          <p><a href="{% url 'users:login' %}">Login</a></p>
+          <div><a href="{% url 'users:register' %}" class="user-btn">Register</a></div>
+          <div><a href="{% url 'users:login' %}" class="user-btn">Login</a></div>
             
         </div>
   
