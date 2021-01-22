@@ -14,69 +14,82 @@
 </head>
 
 <body>
-  <nav class="navbar">
+  <article class="glass">
+      <nav class="navbar">
 
-    <ul class="navbar-nav">
-
-      <li class="nav-item logo">
-        <a href="/" class="nav-link">
-          {% include 'coordinateLogo.html' %}
-        </a>
-      </li>
-
-      <li class="nav-item courseMenu"> 
-        <a href="{% url 'coursePlanner:courses' %}" class="nav-link">
-          {% include 'courseIcon.html' %}
-        </a>
-        <ul class="courseMenuContent">
-          <h2>Courses</h2>
-          {% for course in courses %}
-          <li>
-            <a href="{% url 'coursePlanner:course' course.id %}" class="course">{{ course }}</a>
-          </li>
-          {% endfor %}
-          <li>
-            <a href="{% url 'coursePlanner:newCourse' %}">
-              {% include 'addBtn.html' %}
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="nav-item termMenu"> 
-        <a href="#" class="nav-link">
-          {% include 'termIcon.html' %}
-        </a>
-      </li>
-
-      {% if user.is_authenticated %}  
-      <li class="nav-item">
-        {{ user.username }}
-      </li>
-      <li class="nav-item">
-        <a href="{% url 'users:logout' %}">Logout</a>
-      </li>
-      {% else %}
-      <li class="nav-item">
-        <a href="{% url 'users:register' %}">Register</a>
-      </li>
-      <li class="nav-item">
-        <a href="{% url 'users:login' %}">Login</a>
-      </li> 
-    {% endif %}
-    </ul>
-  </nav>
-
-  <main>
-
-    {% block page_header %}{% endblock page_header %}
-    {% block content %}{% endblock content %}
-  </main>
+        <div class="nav-item nav-logo">
   
- 
+          <a href="/">
+            <!-- {% include 'coordinateLogo.html' %} -->
+            <img src="{% static 'images/logo.svg' %}" class="logo">
+          </a>
   
+          <div class="nav-cursor"></div>
+        </div>
+  
+        <div class="nav-item nav-courses courseMenu"> 
+          
+          <a href="{% url 'coursePlanner:courses' %}">
+            {% include 'courseIcon.html' %}
+          </a>
+  
+          <div class="nav-cursor"></div>
+  
+          <div class="courseMenuContent">
+            <h2>Courses</h2>
+            {% for course in courses %}
+            <div class="course">
+              <a href="{% url 'coursePlanner:course' course.id %}" class="course">{{ course }}</a>
+            </div>
+            {% endfor %}
+            <div>
+              <a href="{% url 'coursePlanner:newCourse' %}">
+                {% include 'addBtn.html' %}
+              </a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="nav-item nav-term"> 
+  
+          <div class="nav-cursor"></div>
+  
+          <a href="#">
+            {% include 'termIcon.html' %}
+          </a>
+        </div>
+  
+        {% if user.is_authenticated %}  
+        <div class="nav-item">
+          <div class="nav-item">
+            {{ user.username }}
+          </div>
+          <div class="nav-item">
+            <a href="{% url 'users:logout' %}">Logout</a>
+          </div>
+        </div>
+        
+        {% else %}
+        <div class="nav-item">
+          <div class="nav-item">
+            <a href="{% url 'users:register' %}">Register</a>
+          </div>
+          <div class="nav-item">
+            <a href="{% url 'users:login' %}">Login</a>
+          </div> 
+        </div>
+  
+        {% endif %}
+      </nav>
+  
+    
+    <main>
+      {% block page_header %}{% endblock page_header %}
+      {% block content %}{% endblock content %}
+    </main>
 
-  
+  </article>
+
   <script src="{% static 'css/base.js' %}""async defer></script>
 
 </body>

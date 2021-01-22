@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="602" height="1035" viewBox="0 0 602 1035">
+  <defs>
+    <linearGradient id="compassneedle-a" x1="5.083%" x2="83.692%" y1="59.061%" y2="50%">
+      <stop offset="0%" stop-color="#2200BF"/>
+      <stop offset="100%" stop-color="#8D77F3"/>
+    </linearGradient>
+    <linearGradient id="compassneedle-b" x1="76.246%" x2="22.211%" y1="6.041%" y2="100%">
+      <stop offset="0%" stop-color="#9062ED"/>
+      <stop offset="100%" stop-color="#4A14B7"/>
+    </linearGradient>
+    <linearGradient id="compassneedle-c" x1="21.816%" x2="92.522%" y1="100%" y2="-.001%">
+      <stop offset="0%" stop-color="#9171F9"/>
+      <stop offset="50%" stop-color="#927CED"/>
+      <stop offset="100%" stop-color="#9280E9"/>
+    </linearGradient>
+    <linearGradient id="compassneedle-d" x1="44.044%" x2="57.921%" y1="88.342%" y2="0%">
+      <stop offset="0%" stop-color="#6A4CF2"/>
+      <stop offset="100%" stop-color="#7560D9"/>
+    </linearGradient>
+    <linearGradient id="compassneedle-e" x1="60.771%" x2="36.477%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#BE95FA"/>
+      <stop offset="100%" stop-color="#6F0DFF"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path fill="#8476F7" d="M16.4601263,0.151566255 C16.4601263,0.151566255 -5.30622492,19.5953515 2.32824155,25.6580017 C26.2062537,44.5875444 28.2096243,73.5366991 24.0945927,94.0793397 C19.6005451,116.289209 82.6796475,37.2528202 16.4601263,0.151566255 Z" transform="translate(383 361)"/>
+    <path fill="url(#compassneedle-a)" d="M83.7153787,36.2093715 C66.0790994,23.9819231 25.7598516,28.3838045 5.08470569,42.4279024 C-17.3269354,57.6275614 39.868875,-27.9162054 98.041464,10.8998969" transform="translate(301 350)"/>
+    <path fill="url(#compassneedle-b)" d="M406.426043,0.24489691 L432.836152,64.7162006 L0.627045153,579.998579 L334.737982,15.0388974 C357.518273,26.0322963 385.894111,21.7455169 404.226821,2.33325999 C405.062175,1.55748899 405.829416,0.972720756 406.426043,0.24489691 Z" transform="translate(0 455)"/>
+    <path fill="url(#compassneedle-c)" d="M155.33134,366.619614 C131.444043,349.904552 98.2189853,352.778979 77.5890474,374.597504 C72.6487201,379.87994 68.7941791,385.840308 66.0797136,392.158623 L0.22678007,392.158623 L361.57643,0.303772188 L155.33134,366.619614 Z" transform="translate(240 1)"/>
+    <path fill="url(#compassneedle-d)" d="M0.217592112,367.178218 L206.8757,0.308647879 L37.8610275,519.546712 L11.4235859,455.132839 C32.0948365,431.054359 30.4084976,394.716656 7.07174363,372.718496 C4.89582252,370.681629 2.61110534,368.83487 0.217592112,367.178218 Z" transform="translate(395)"/>
+    <path fill="url(#compassneedle-e)" d="M305.433068,0.0232089752 C295.948527,22.3979427 300.717896,49.3051612 319.415993,66.9628538 C323.968573,71.294498 329.063127,74.7630703 334.482865,77.3631424 L0.626995061,641.969626 L239.691645,0.0232089752 L305.433068,0.0232089752 Z" transform="translate(0 393)"/>
+  </g>
+</svg>

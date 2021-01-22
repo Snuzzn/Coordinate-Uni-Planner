@@ -1,32 +1,35 @@
-
-/* @keyframes slideIn {
+ @keyframes stretchOut {
     0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-} */
-
-@keyframes stretchOut {
-    0% {
-        transform: rotate(0deg)
-    }
-
-    40% {
-        transform: rotate(50deg)
+        transform: rotate(180deg)
     }
 
 
     100% {
         transform: rotate(0deg);
     }
+} 
+
+.nav-logo {
+    animation: 500ms ease-out stretchOut;
+} 
+
+.compass {
+    top: 0rem;
+    right: 5rem;
+    max-width: 100%;
+    height: auto;
+
 }
 
-.logo {
-    animation: 700ms ease-out stretchOut;
+
+
+.landing {
+    display: flex;
 }
-/* 
-.navbar {
-    animation: 500ms ease-out slideIn;
-} */
+
+
+
+main {
+    overflow: hidden;
+    margin: 0rem;
+}
