@@ -14,27 +14,26 @@
 </head>
 
 <body>
-  <article class="glass">
+  <section class="glass">
       <nav class="navbar">
 
         <div class="nav-item nav-logo">
   
           <a href="/">
             <!-- {% include 'coordinateLogo.html' %} -->
-            <img src="{% static 'images/logo.svg' %}" class="logo">
+            <img src="{% static 'images/logo.png' %}" class="logo">
           </a>
+          <div class="nav-cursor"></div> 
   
-          <div class="nav-cursor"></div>
         </div>
   
         <div class="nav-item nav-courses courseMenu"> 
           
           <a href="{% url 'coursePlanner:courses' %}">
-            {% include 'courseIcon.html' %}
+            <img src="{% static 'images/courseIcon.png' %}">
           </a>
   
-          <div class="nav-cursor"></div>
-  
+          <div class="nav-cursor"></div> 
           <div class="courseMenuContent">
             <h2>Courses</h2>
             {% for course in courses %}
@@ -51,32 +50,26 @@
         </div>
   
         <div class="nav-item nav-term"> 
-  
-          <div class="nav-cursor"></div>
-  
+
           <a href="#">
-            {% include 'termIcon.html' %}
+            <img src="{% static 'images/termIcon.png' %}">
           </a>
+
+          <div class="nav-cursor"></div>
+
         </div>
   
         {% if user.is_authenticated %}  
         <div class="nav-item">
-          <div class="nav-item">
-            {{ user.username }}
-          </div>
-          <div class="nav-item">
-            <a href="{% url 'users:logout' %}">Logout</a>
-          </div>
+            <p>{{ user.username }}</p>
+            <p><a href="{% url 'users:logout' %}">Logout</a></p>
         </div>
         
         {% else %}
         <div class="nav-item">
-          <div class="nav-item">
-            <a href="{% url 'users:register' %}">Register</a>
-          </div>
-          <div class="nav-item">
-            <a href="{% url 'users:login' %}">Login</a>
-          </div> 
+          <p><a href="{% url 'users:register' %}">Register</a></p>
+          <p><a href="{% url 'users:login' %}">Login</a></p>
+            
         </div>
   
         {% endif %}
@@ -88,7 +81,7 @@
       {% block content %}{% endblock content %}
     </main>
 
-  </article>
+  </section>
 
   <script src="{% static 'css/base.js' %}""async defer></script>
 

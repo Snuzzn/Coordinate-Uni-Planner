@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="67" height="71" viewBox="0 0 67 71">
+  <defs>
+    <linearGradient id="coursesicon-a" x1="50%" x2="50%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#7367F0"/>
+      <stop offset="100%" stop-color="#CE9FFC"/>
+    </linearGradient>
+    <filter id="coursesicon-b" width="99.4%" height="99.5%" x=".3%" y=".3%" filterUnits="objectBoundingBox">
+      <feGaussianBlur in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="coursesicon-c" x1="19.073%" x2="80.976%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#FFF" stop-opacity=".8"/>
+    </linearGradient>
+    <linearGradient id="coursesicon-f" x1="0%" x2="100%" y1="47.531%" y2="52.469%">
+      <stop offset="0%" stop-color="#FFF" stop-opacity=".684"/>
+      <stop offset="99.956%" stop-color="#FFF"/>
+    </linearGradient>
+    <rect id="coursesicon-e" width="27" height="6" x="21" y="30" rx="3"/>
+    <filter id="coursesicon-d" width="137%" height="266.7%" x="-14.8%" y="-66.7%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dx="1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.550340834   0 0 0 0 0.581557749   0 0 0 0 0.835752625  0 0 0 1 0"/>
+    </filter>
+    <linearGradient id="coursesicon-i" x1="0%" x2="100%" y1="45.014%" y2="54.986%">
+      <stop offset="0%" stop-color="#FFF" stop-opacity=".684"/>
+      <stop offset="99.956%" stop-color="#FFF"/>
+    </linearGradient>
+    <rect id="coursesicon-h" width="19" height="6" x="21" y="41" rx="3"/>
+    <filter id="coursesicon-g" width="152.6%" height="266.7%" x="-21.1%" y="-66.7%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dx="1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.550340834   0 0 0 0 0.581557749   0 0 0 0 0.835752625  0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(-4 -2)">
+    <path fill="url(#coursesicon-a)" d="M25.3509587,8.08365003 L49.6377481,7.84567317 C58.4738799,7.75909133 65.7071685,14.852003 65.7937503,23.6881348 C65.7947875,23.7939902 65.7947742,23.8998534 65.7937103,24.0057085 L65.4914629,54.0779214 C65.4038976,62.7902685 58.3614102,69.8309808 49.6490413,69.91635 L25.3622519,70.1543268 C16.5261201,70.2409087 9.29283153,63.147997 9.20624969,54.3118652 C9.20521245,54.2060098 9.20522579,54.1001466 9.20628971,53.9942915 L9.50853707,23.9220786 C9.59610242,15.2097315 16.6385898,8.16901917 25.3509587,8.08365003 Z" filter="url(#coursesicon-b)" transform="rotate(19 37.5 39)"/>
+    <rect width="56" height="61" x="4" y="2" fill="url(#coursesicon-c)" opacity=".59" rx="16"/>
+    <use fill="#000" filter="url(#coursesicon-d)" xlink:href="#coursesicon-e"/>
+    <use fill="url(#coursesicon-f)" xlink:href="#coursesicon-e"/>
+    <use fill="#000" filter="url(#coursesicon-g)" xlink:href="#coursesicon-h"/>
+    <use fill="url(#coursesicon-i)" xlink:href="#coursesicon-h"/>
+  </g>
+</svg>

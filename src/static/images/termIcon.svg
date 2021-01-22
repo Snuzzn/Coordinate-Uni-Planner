@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="83" height="80" viewBox="0 0 83 80">
+  <defs>
+    <linearGradient id="termicon-a" x1="50%" x2="50%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#7367F0"/>
+      <stop offset="100%" stop-color="#CE9FFC"/>
+    </linearGradient>
+    <filter id="termicon-b" width="99.6%" height="99.6%" x=".2%" y=".2%" filterUnits="objectBoundingBox">
+      <feGaussianBlur in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="termicon-c" x1="20.168%" x2="79.88%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#FFF" stop-opacity=".8"/>
+    </linearGradient>
+    <linearGradient id="termicon-f" x1="0%" x2="100%" y1="47.421%" y2="52.579%">
+      <stop offset="0%" stop-color="#FFF" stop-opacity=".684"/>
+      <stop offset="99.956%" stop-color="#FFF"/>
+    </linearGradient>
+    <path id="termicon-e" d="M17.7896601,35.1399886 L36.9162169,35.2786888 C38.4140458,35.2895506 39.6256303,36.5010547 39.6365914,37.9988829 C39.6473484,39.468815 38.4644533,40.6691507 36.9945213,40.6799077 C36.9815954,40.6800023 36.9686691,40.6800027 36.9557432,40.679909 L17.8291864,40.5412087 C16.3313574,40.5303469 15.119773,39.3188428 15.1088118,37.8210146 C15.0980548,36.3510825 16.2809499,35.1507469 17.750882,35.1399898 C17.7638078,35.1398953 17.7767342,35.1398948 17.7896601,35.1399886 Z"/>
+    <filter id="termicon-d" width="140.5%" height="278.5%" x="-16.2%" y="-71.3%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dx="1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.550340834   0 0 0 0 0.581557749   0 0 0 0 0.835752625  0 0 0 1 0"/>
+    </filter>
+    <linearGradient id="termicon-i" x1="0%" x2="100%" y1="49.107%" y2="50.893%">
+      <stop offset="0%" stop-color="#FFF" stop-opacity=".684"/>
+      <stop offset="99.956%" stop-color="#FFF"/>
+    </linearGradient>
+    <path id="termicon-h" d="M22.7324644,41.5673019 L60.0277468,41.8377565 C61.5255758,41.8486183 62.7371602,43.0601224 62.7481213,44.5579506 C62.7588784,46.0278827 61.5759833,47.2282183 60.1060512,47.2389754 C60.0931253,47.2390699 60.080199,47.2390704 60.0672731,47.2389766 L22.7719907,46.968522 C21.2741617,46.9576602 20.0625773,45.7461561 20.0516162,44.2483279 C20.0408591,42.7783959 21.2237542,41.5780602 22.6936863,41.5673032 C22.7066121,41.5672086 22.7195385,41.5672082 22.7324644,41.5673019 Z"/>
+    <filter id="termicon-g" width="123.3%" height="274.4%" x="-9.3%" y="-69.7%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dx="1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.550340834   0 0 0 0 0.581557749   0 0 0 0 0.835752625  0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path fill="url(#termicon-a)" d="M30.0392217,8.74448188 L52.9490867,8.57682674 C61.7854061,8.51216227 69.0010792,15.6229936 69.0657437,24.4593129 C69.0663123,24.5370151 69.0663149,24.6147204 69.0657514,24.6924227 L68.8432722,55.3719709 C68.7798529,64.1173978 61.706201,71.1915188 52.9607783,71.2555181 L30.0509133,71.4231733 C21.2145939,71.4878377 13.9989208,64.3770064 13.9342563,55.5406871 C13.9336877,55.4629849 13.9336851,55.3852796 13.9342486,55.3075773 L14.1567278,24.6280291 C14.2201471,15.8826022 21.293799,8.80848116 30.0392217,8.74448188 Z" filter="url(#termicon-b)" transform="rotate(-119 41.5 40)"/>
+    <rect width="55" height="61" x="9" y="6" fill="url(#termicon-c)" opacity=".59" rx="16"/>
+    <g transform="rotate(-29 27.373 37.91)">
+      <use fill="#000" filter="url(#termicon-d)" xlink:href="#termicon-e"/>
+      <use fill="url(#termicon-f)" xlink:href="#termicon-e"/>
+    </g>
+    <g transform="rotate(-29 41.4 44.403)">
+      <use fill="#000" filter="url(#termicon-g)" xlink:href="#termicon-h"/>
+      <use fill="url(#termicon-i)" xlink:href="#termicon-h"/>
+    </g>
+  </g>
+</svg>

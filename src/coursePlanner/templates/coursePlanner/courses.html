@@ -1,25 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<h2>Courses:</h2>
+  <h1>Courses 
+    <a href="{% url 'coursePlanner:newCourse' %}">
+      <img src="{% static 'images/plus.svg' %}" class="add-btn"></a>
+  </h1>
 
+  <section class="courseCards">
 
-<ul>
-{% for course in courses %}
+    {% for course in courses %}
+    <a href="{% url 'coursePlanner:course' course.id %}">
+      <div class="courseCard {% cycle 'blue-purple'  'coral' 'sky-blue' 'pink-purple' %}">
+        <h1>{{ course }} </h1>
+        <h2>{{ course.courseName }} </h2>
+      </div>
+    </a>
+    {% endfor %}
 
-  <li>
-    <a href="{% url 'coursePlanner:course' course.id %}">{{ course }}</a>
-    
-  </li>
-
-{% endfor %}
-</ul>
-
-<a href="{% url 'coursePlanner:newCourse' %}">
-<p>Add a course</p>
-</a>
-
-
+  </section>
 
 {% endblock content %}
