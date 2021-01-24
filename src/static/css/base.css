@@ -47,8 +47,10 @@ a {
 
 input {
     background: rgba(255,255,255,0.37);
+    border-radius: 1em;
     border: 0;
     padding: 0.5em;
+    margin: 0.1em;
 }
 
 html {
@@ -239,6 +241,12 @@ main {
 .sky-blue {
     background-image: linear-gradient(45deg, #ABDCFF 0%, #0396FF 100%);
     box-shadow: 0.4em 0.6em 1em 0 #39ADFF;
+}
+
+.translucent {
+    background-image:  rgba(255,255,255,0.37);
+    box-shadow: 0.4em 0.6em 1em 0 #806FF2;
+    backdrop-filter: blur(20em);
 }
 
 .add-btn {

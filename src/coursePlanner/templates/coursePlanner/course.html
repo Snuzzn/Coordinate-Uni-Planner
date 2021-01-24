@@ -24,18 +24,18 @@
         <i class="far fa-edit"></i></a>
        {% endblock editContact %}
    
-       {% block deleteContact %}
-       <a href="{% url 'coursePlanner:deleteContact' course_id=course.id contact_id=contact.id %}">
-        <i class="far fa-trash-alt"></i></a>
-       {% endblock deleteContact %}
-
+      {% block deleteContact %}
+      <a href="{% url 'coursePlanner:deleteContact' course_id=course.id contact_id=contact.id %}">
+      <i class="far fa-trash-alt"></i></a>
+      {% endblock deleteContact %}
     </div>
 
   {% endfor %}
+  {% block newContact %}
+  {% endblock newContact %}
+
 </div>
 
-{% block newContact %}
-{% endblock newContact %}
 
 
 <h2>Links</h2>
@@ -63,7 +63,9 @@
 {% endblock newLink %}
 
 
-<h2>Assessments</h2>
+<h2>Assessments <a href="{% url 'coursePlanner:newAssessment' course.id %}">
+  <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2>
+
 <table class="assessment-table">
   <tr class="assessment-header-row">
     <th>Task</th>
@@ -98,9 +100,8 @@
 
 {% block newAssessment %}
 </table>
-<p><a href="{% url 'coursePlanner:newAssessment' course.id %}">
-<button>Add a new assessment</button></a></p>
 {% endblock newAssessment %}
+
 <ul>
   {% for message in assessmentMessages %}
     <li>{{ message }}</li>

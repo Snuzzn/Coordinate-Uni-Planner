@@ -4,6 +4,17 @@
 <!-- form to add a new contact -->
 <form action="{% url 'coursePlanner:newContact' course.id %}" method="post">
   {% csrf_token %}
+  <div class="card translucent">
+  <header>
+    Role: {{ form.role }}
+   </header>
+    
+  <div class="card-text-medium">Name: {{ form.name }}</div>
+  <div class="card-text-small">Email: {{ form.email }}</div>
+  <div class="card-text-small">Location: {{ form.location }}</div>
+
   {% include 'coursePlanner/form-add.html' %}
+  </div>
+
 
 {% endblock newContact %}
