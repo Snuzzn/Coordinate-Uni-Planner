@@ -8,12 +8,13 @@
       <td>{{ form.task }}</td>
       <td>{{ form.weighting }}%</td>
       <td>{{ form.myGrade }}%</td>
-      <td><button name="submit">Add assessment</button></td>
-      </form> 
-      <td><a href="{% url 'coursePlanner:course' course.id %}">
-        <button>Cancel</button>
+      <td><button name="submit"><i class="fas fa-plus-circle"></i></button>
+      <a href="{% url 'coursePlanner:course' course.id %}">
+        <i class="fas fa-ban"></i>
       </a></td>
     </tr>
+  </form> 
+
     
   </table>
 

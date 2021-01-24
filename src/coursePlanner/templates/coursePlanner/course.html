@@ -1,40 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <h1>{{ course.courseCode }}: {{course.courseName }}</p>
 
-<h3>Course Contacts</h3>
-<ul>
+<h2>Course Contacts <a href="{% url 'coursePlanner:newContact' course.id %}">
+  <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2>
+<div class="card-list">
   {% for contact in contacts %}     
-    {% block editContact %}
-    <li>
-      {{ contact.role }}
-      <ul>
-        <li>Name: {{ contact.name }}</li>
-        <li>Email: {{ contact.email }}</li>
-        <li>Location: {{ contact.location }}</li>
-      </ul>
-    </li>
-    <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
-     <button>Edit</button></a>
-    {% endblock editContact %}
+    <div class="card {% cycle 'blue-purple'  'coral' 'sky-blue' 'pink-purple' %}">
+      {% block editContact %}
 
-    {% block deleteContact %}
-    <a href="{% url 'coursePlanner:deleteContact' course_id=course.id contact_id=contact.id %}">
-      <button>Delete</button></a>
-    {% endblock deleteContact %}
+      <header>
+      {{ contact.role }}
+      </header>
+      
+      <div class="card-text-medium">{{ contact.name }}</div>
+      <div class="card-text-small">{{ contact.email }}</div>
+      <div class="card-text-small">{{ contact.location }}</div>
+
+      <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
+        <i class="far fa-edit"></i></a>
+       {% endblock editContact %}
+   
+       {% block deleteContact %}
+       <a href="{% url 'coursePlanner:deleteContact' course_id=course.id contact_id=contact.id %}">
+        <i class="far fa-trash-alt"></i></a>
+       {% endblock deleteContact %}
+
+    </div>
 
   {% endfor %}
-</ul>
+</div>
 
 {% block newContact %}
-<a href="{% url 'coursePlanner:newContact' course.id %}">
-<button>Add a new contact</button></a>
 {% endblock newContact %}
 
 
-<h3>Links</h3>
+<h2>Links</h2>
 <ul>
   {% for link in links %}
     <li>
@@ -59,12 +63,14 @@
 {% endblock newLink %}
 
 
-<h3>Assessments</h3>
-<table border=1>
-  <tr>
+<h2>Assessments</h2>
+<table class="assessment-table">
+  <tr class="assessment-header-row">
     <th>Task</th>
     <th>Weighting</th>
     <th>My Grade</th>
+    <th></th>
+    <th></th>
   </tr>
   {% for assessment in assessments %}
     <tr>
@@ -78,30 +84,31 @@
         {% endif %} 
 
         <td><a href="{% url 'coursePlanner:editAssessment' course_id=course.id assessment_id=assessment.id %}">
-          <button>Edit</button></a></td>
+          <button><i class="far fa-edit"></i></button></a>
+          {% block deleteAssessment %}
+          <a href="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}">
+            <button><i class="far fa-trash-alt"></i></button></a>
+          {% endblock deleteAssessment %}
+        </td>
       {% endblock editAssessment %}
 
-      {% block deleteAssessment %}
-        <td><a href="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}">
-          <button>Delete</button></a></td>  
-      {% endblock deleteAssessment %}
+
     </tr>
   {% endfor %}
-
-  <ul>
-    {% for message in assessmentMessages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
 
 {% block newAssessment %}
 </table>
 <p><a href="{% url 'coursePlanner:newAssessment' course.id %}">
 <button>Add a new assessment</button></a></p>
 {% endblock newAssessment %}
+<ul>
+  {% for message in assessmentMessages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+</ul>
 
 
-<h3>Queries</h3>
+<h2>Queries</h2>
 <ul>
   {% for query in queries %}
     <li>

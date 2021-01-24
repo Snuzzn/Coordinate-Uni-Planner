@@ -10,7 +10,7 @@
 
   {% else %}
     <a href="{% url 'coursePlanner:deleteContact' course_id=course.id contact_id=contact.id %}">
-      <button>Delete</button></a>
+      <button><i class="far fa-trash-alt"></i></button></a>
 
   {% endif %}
 

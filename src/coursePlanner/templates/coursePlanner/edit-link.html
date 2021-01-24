@@ -6,6 +6,7 @@
   
     <form action="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}" method="post">
       {% csrf_token %}
+      {{ form.as_p }}
       {% include 'coursePlanner/form-edit.html' %}
 
 

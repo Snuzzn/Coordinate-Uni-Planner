@@ -6,21 +6,32 @@
 
     <form action="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}" method="post">
       {% csrf_token %}
+
+      <header>
+        {{ form.role }}
+      </header>
+      
+      <div class="card-text-medium">{{ form.name }}</div>
+      <div class="card-text-small">{{ form.email }}</div>
+      <div class="card-text-small">{{ form.location }}</div>
+
       {% include 'coursePlanner/form-edit.html' %}
 
-  {% else %}
-    <li>
-      {{ contact.role }}
-      <ul>
-        <li>Name: {{ contact.name }}</li>
-        <li>Email: {{ contact.email }}</li>
-        <li>Location: {{ contact.location }}</li>
-      </ul>
-    </li>
-    <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
-    <button>Edit</button></a>
 
+  {% else %}
+    
+
+      <header>
+      {{ contact.role }}
+      </header>
+      
+      <div class="card-text-medium">{{ contact.name }}</div>
+      <div class="card-text-small">{{ contact.email }}</div>
+      <div class="card-text-small">{{ contact.location }}</div>
+
+      <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
+          <i class="far fa-edit"></i></a>
   {% endif %}
- 
+
 {% endblock editContact %}
 
