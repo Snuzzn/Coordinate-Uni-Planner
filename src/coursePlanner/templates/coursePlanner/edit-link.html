@@ -1,6 +1,7 @@
 {% extends 'coursePlanner/course.html' %}
 
 {% block editLink %}
+  <div class="link inactive-link">
 
   {% if link.id == linkToEdit.id %}  
   
@@ -9,11 +10,10 @@
       {{ form.as_p }}
       {% include 'coursePlanner/form-edit.html' %}
 
-
   {% else %}
-    <a href={{link.link}}>{{ link.title }}</a>
+    <p>{{link.title}}</p>
     <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
-    <button>Edit</button></a>
+      <i class="far fa-edit"></a>
 
   {% endif %}
  

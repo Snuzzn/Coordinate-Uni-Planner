@@ -6,7 +6,7 @@
   
     <form action="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}" method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form.text }}
       {% include 'coursePlanner/form-edit.html' %}
 
 

@@ -28,6 +28,12 @@ class ContactForm(forms.ModelForm):
             'email': 'Email',
             'location': 'Location',
         }
+        widgets = {
+            'role' : forms.TextInput(attrs = {'placeholder': 'Role'}),
+            'name'    : forms.TextInput(attrs = {'placeholder': 'Name'}),
+            'email'    : forms.TextInput(attrs = {'placeholder': 'Email'}),
+            'location'    : forms.TextInput(attrs = {'placeholder': 'Location'}),
+        }
 
 class LinkForm(forms.ModelForm):
     class Meta:
@@ -36,6 +42,10 @@ class LinkForm(forms.ModelForm):
         labels = {
             'link': 'Link',
             'title': 'Title',
+        }
+        widgets = {
+            'link' : forms.TextInput(attrs = {'placeholder': 'Link'}),
+            'title'    : forms.TextInput(attrs = {'placeholder': 'Title'}),
         }
 
 class QueryForm(forms.ModelForm):

@@ -67,8 +67,6 @@ def course(request, course_id):
     templateName = 'coursePlanner/course.html'
     return render(request, templateName, context)
 
-
-
 def genAssessmentMessages(course_id):
     course = Course.objects.get(id=course_id)
     assessments = course.assessment_set.all()

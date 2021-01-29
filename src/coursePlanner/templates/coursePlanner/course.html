@@ -5,7 +5,7 @@
 
 <h1>{{ course.courseCode }}: {{course.courseName }}</p>
 
-<h2>Course Contacts <a href="{% url 'coursePlanner:newContact' course.id %}">
+<h2 class="courseHeading">Course Contacts <a href="{% url 'coursePlanner:newContact' course.id %}">
   <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2>
 <div class="card-list">
   {% for contact in contacts %}     
@@ -31,6 +31,7 @@
     </div>
 
   {% endfor %}
+  
   {% block newContact %}
   {% endblock newContact %}
 
@@ -38,32 +39,39 @@
 
 
 
-<h2>Links</h2>
+<h2 class="courseHeading">Links <a href="{% url 'coursePlanner:newLink' course.id %}">
+  <img src="{% static 'images/plus.svg' %}" class="add-btn">
+  </a>
+</h2>
+
 <ul>
   {% for link in links %}
-    <li>
-      {% block editLink %}
-      <a href={{link.link}}>{{ link.title }}</a>
-      <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
-        <button>Edit</button></a>
-      {% endblock editLink %}
+    {% block editLink %}
+      <a href={{link.link}} target="_blank">
+        <div class="link">
+          <p> <i class="fas fa-link purple"></i> {{link.title}}</p>
+          <div>
+            <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
+              <i class="far fa-edit"></a>
+            {% endblock editLink %}
+      
+            {% block deleteLink %}
+              <a href="{% url 'coursePlanner:deleteLink' course_id=course.id link_id=link.id %}">
+              <button><i class="far fa-trash-alt"></i></button></a>
+            {% endblock deleteLink %}
+          </div>
+        </div>
+      </a>
 
-      {% block deleteLink %}
-        <a href="{% url 'coursePlanner:deleteLink' course_id=course.id link_id=link.id %}">
-        <button>Delete</button></a>
-      {% endblock deleteLink %}
-    </li>
   {% endfor %}
 </ul>   
  
 {% block newLink %}
-<p><a href="{% url 'coursePlanner:newLink' course.id %}">
-<button>Add a new link</button>
-</a></p>
+<p></p>
 {% endblock newLink %}
 
 
-<h2>Assessments <a href="{% url 'coursePlanner:newAssessment' course.id %}">
+<h2 class="courseHeading">Assessments <a href="{% url 'coursePlanner:newAssessment' course.id %}">
   <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2>
 
 <table class="assessment-table">
@@ -71,7 +79,6 @@
     <th>Task</th>
     <th>Weighting</th>
     <th>My Grade</th>
-    <th></th>
     <th></th>
   </tr>
   {% for assessment in assessments %}
@@ -109,27 +116,36 @@
 </ul>
 
 
-<h2>Queries</h2>
-<ul>
-  {% for query in queries %}
-    <li>
+<h2 class="courseHeading">Queries <a href="{% url 'coursePlanner:newQuery' course.id %}">
+  <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2> 
+
+{% for query in queries %}
+  <div class="query-container">
+    <div class="query-bubble">
+      <div class="query-bubble__question-mark">?</div>
+      
+      <div class="query-bubble__tick">
+        <a href="{% url 'coursePlanner:deleteQuery' course_id=course.id query_id=query.id %}">
+          <button></button><i class="far fa-check-circle"></i>
+        </a>
+      </div>
+
+    </div>
+    <div class="query">
       {% block editQuery %}
-      {{ query }}
+      {{ query.text }}
       <a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
-        <button>Edit</button></a>
+        <button><i class="far fa-edit"></i></button></a>
       {% endblock editQuery %}
       
       {% block deleteQuery %}
-      <a href="{% url 'coursePlanner:deleteQuery' course_id=course.id query_id=query.id %}">
-        <button>Delete</button></a>
       {% endblock deleteQuery %}
-    </li>
+    </div>
+  </div>
+    
   {% endfor %}
-</ul>
 
 {% block newQuery %}
-<a href="{% url 'coursePlanner:newQuery' course.id %}">
-<button>Add a new query</button></a>
 {% endblock newQuery %}
 
 
