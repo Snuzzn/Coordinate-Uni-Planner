@@ -119,6 +119,7 @@ main {
 
 ::-webkit-scrollbar {
     width: 0.5rem;
+    height: 0;
 }
 ::-webkit-scrollbar-thumb{
     background: #A3D8E5;
