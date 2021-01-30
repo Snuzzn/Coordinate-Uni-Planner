@@ -17,6 +17,10 @@ class CourseForm(forms.ModelForm):
             'courseCode': 'Course Code',
             'courseName': 'Course Name',
         }
+        widgets = {
+            'courseCode' : forms.TextInput(attrs = {'placeholder': 'Course Code'}),
+            'courseName' : forms.TextInput(attrs = {'placeholder': 'Course Name'}),
+        }
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -66,6 +70,12 @@ class AssessmentForm(forms.ModelForm):
             'weighting': 'Weighting',
             'myGrade': 'My Grade',
         }
+        widgets = {
+            'task' : forms.TextInput(attrs = {'placeholder': 'Assignment 1'}),
+            'weighting'    : forms.TextInput(attrs = {'placeholder': '15%'}),
+            'myGrade'    : forms.TextInput(attrs = {'placeholder': '80%'}),
+        }
+
     def clean_myGrade(self):
         grade = self.cleaned_data.get("myGrade")
         if type(grade) is int:

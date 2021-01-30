@@ -20,10 +20,14 @@ from .forms import (
     DeleteQueryForm,
     DeleteAssessmentForm,
 )
+def Reverse(lst): 
+    return [ele for ele in reversed(lst)] 
 
 @login_required
 def courses(request):
-    courses = Course.objects.filter(owner=request.user)
+    courses = Reverse(Course.objects.filter(owner=request.user))
+    # courses = courses.reverse()
+    print(courses)
     context = {'courses': courses}
     templateName = 'coursePlanner/courses.html'
     return render(request, templateName, context)
@@ -33,6 +37,7 @@ def courses(request):
 def newCourse(request):
     # Add a new course
     form = CourseForm(request.POST or None)
+    courses = Reverse(Course.objects.filter(owner=request.user))
     if form.is_valid():
         newCourse = form.save(commit=False)
         newCourse.owner = request.user
@@ -40,7 +45,9 @@ def newCourse(request):
         return redirect('coursePlanner:courses')
     
     # Display the blank or invalid form
-    context = {'form': form}
+    context = {
+        'form': form,
+        'courses': courses }
     templateName = 'coursePlanner/new-course.html'
     return render(request, templateName, context)
 
