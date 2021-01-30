@@ -13,15 +13,14 @@
 
 let container = document.querySelector('main')
 
-
-var startingScrollPosition = localStorage.getItem("scrollPosition") || 0;
-// console.log(startingScrollPosition);
+let startingScrollPosition = localStorage.getItem("scrollPosition") || 0;
+console.log(startingScrollPosition);
 container.scrollTop = startingScrollPosition;
 
 
 
-var links = document.querySelectorAll("a");
-console.log(link)
+let links = document.querySelectorAll("a");
+// console.log(link)
 
 for (var i = 0; i < links.length; i++) {
     link = links[i];
