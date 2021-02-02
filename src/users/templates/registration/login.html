@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+{% endblock head %}
+
+
+{% block content %}
+
+<div class="landing">
+  <div class="login">
+
+    <form method="post" action="{% url 'users:login' %}">
+      {% csrf_token %}
+      <h1>Login</h1>
+      <p>Don't have an account?
+        <a href="{% url 'users:register' %}">Register.</a>
+      </p>
+      
+      <h2>Username</h2>
+      {{ form.username }}
+      <div class="password-info-container">
+        <h2>Password</h2>
+        <!-- <p>Forgot password?</p> -->
+      </div>
+
+      {{ form.password }}
+  
+      {% if form.errors %}
+      <p class="error-red">Your username and password didn't match. Please try again.</p>
+      {% endif %}
+
+
+      <button name="submit">Login</button>
+      <input type="hidden" name="next" 
+        value="/" />
+
+    </form>
+  </div>
+  <img src="{% static 'images/compassNeedle.svg' %}" class="compass">
+
+</div>
+
+
+{% endblock content %}

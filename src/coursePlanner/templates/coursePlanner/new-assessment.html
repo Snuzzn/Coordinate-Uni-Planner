@@ -1,0 +1,28 @@
+{% extends 'coursePlanner/course.html' %}
+
+{% block newAssessment %}
+  <!-- form to add a new assessment-->
+  <form action="{% url 'coursePlanner:newAssessment' course.id %}" method="post">
+    {% csrf_token %}
+    <tr>
+      <td>{{ form.task }}</td>
+      <td>{{ form.weighting }}%</td>
+      <td>{{ form.myGrade }}%</td>
+      <td><button name="submit"><i class="fas fa-plus-circle"></i></button>
+      <a href="{% url 'coursePlanner:course' course.id %}">
+        <i class="fas fa-ban"></i>
+      </a></td>
+    </tr>
+  </form> 
+
+    
+  </table>
+
+  {{ form.errors }}
+
+
+
+{% endblock newAssessment %}
+
+
+

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <h1>Courses 
+    <a href="{% url 'coursePlanner:newCourse' %}">
+      <img src="{% static 'images/plus.svg' %}" class="add-btn"></a>
+  </h1>
+
+  <section class="courseCards">
+
+
+    {% block newCourse %}
+    {% endblock newCourse %}
+
+    {% for course in courses %}
+    
+    <div class="courseCard {% cycle 'blue-purple'  'coral' 'sky-blue' 'teal'  %}">
+      <a href="{% url 'coursePlanner:course' course.id %}" class="courseHeading">
+        <h1>{{ course }} </h1>
+        <h2>{{ course.courseName }} </h2>
+      </a>
+
+      {% block deleteCourse %}
+      <a href="{% url 'coursePlanner:deleteCourse' course_id=course.id %}">
+        <i class="far fa-trash-alt"></i></a>
+      {% endblock deleteCourse %}
+
+    </div>
+
+    {% endfor %}
+
+  </section>
+
+{% endblock content %}

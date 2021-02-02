@@ -1,0 +1,21 @@
+{% extends 'coursePlanner/course.html' %}
+
+{% block editQuery %}
+
+  {% if query.id == queryToEdit.id %}  
+  
+    <form action="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}" method="post">
+      {% csrf_token %}
+      {{ form.text }}
+      {% include 'coursePlanner/form-edit.html' %}
+
+
+  {% else %}
+    {{ query }}
+    <a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
+      <button><i class="far fa-edit"></i></button></a>
+
+  {% endif %}
+ 
+{% endblock editQuery %}
+

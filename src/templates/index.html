@@ -1,9 +1,27 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+{% endblock head %}
+
 {% block page_header %}
-<h1>Coordinate</h1>
 {% endblock page_header %}
 
 {% block content %}
-<p> Coordinate helps you plan your university studies.</p>
+<div class="landing">
+  <div class="intro">
+    <h1>Coordinate</h1>
+    <h2>Your personal university study planner</h2>
+    <a href="{% url 'coursePlanner:courses' %}">
+      <div class="start-btn">
+       Start now &raquo 
+      </div>
+    </a>
+  </div>
+  <img src="{% static 'images/compassNeedle.svg' %}" class="compass">
+
+</div>
+
 {% endblock content %}

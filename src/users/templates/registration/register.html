@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+{% endblock head %}
+
+
+{% block content %}
+
+<div class="landing">
+  <div class="login">
+    <h1>Register</h1>
+    <p>Already have an account? 
+      <a href="{% url 'users:login' %}">Login.</a>
+    </p>
+    <form method="post" action="{% url 'users:register' %}">
+      {% csrf_token %}
+      {{form.non_field_errors}}
+
+      <br>
+
+      <h2>Username:</h2>
+      {{ form.username}}
+      <p class="help-text">{{ form.username.help_text }}</p>
+      <ul class="error-red">{{ form.username.errors }}</ul>
+
+      
+      <h2>Create Password:</h2>
+      {{ form.password1 }}
+      <!-- {{ form.password1.help_text }} -->
+      <ul class="error-red">{{form.password1.errors }}</ul>
+
+      <h2>Confirm password:</h2>
+      {{ form.password2 }}
+      <!-- {{ form.password2.help_text }} -->
+      <ul class="error-red">{{form.password2.errors }}</ul>
+
+          
+      <button name="submit">Register</button>
+      <input type="hidden" name="next" value="/" />
+    </form>
+  </div>
+  <img src="{% static 'images/compassNeedle.svg' %}" class="compass">
+
+</div>
+
+    
+{% endblock content %}

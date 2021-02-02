@@ -1,0 +1,14 @@
+{% extends 'coursePlanner/course.html' %}
+
+
+{% block newLink %}
+
+<!-- form to add a new link -->
+<form action="{% url 'coursePlanner:newLink' course.id %}" method="post">
+  {% csrf_token %}
+  {{ form.link }}
+  {{ form.title }}
+  {% include 'coursePlanner/form-add.html' %}
+
+
+{% endblock newLink %}

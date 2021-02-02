@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{ course.courseCode }}: {{course.courseName }}</p>
+
+<h2 class="courseHeading">Course Contacts <a href="{% url 'coursePlanner:newContact' course.id %}">
+  <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2>
+<div class="card-list">
+  {% for contact in contacts %}     
+    <div class="card {% cycle 'blue-purple'  'coral' 'sky-blue'   'teal' %}">
+      {% block editContact %}
+
+      <header>
+      {{ contact.role }}
+      </header>
+      
+      <div class="card-text-medium">{{ contact.name }}</div>
+      <div class="card-text-small">{{ contact.email }}</div>
+      <div class="card-text-small">{{ contact.location }}</div>
+
+      <a href="{% url 'coursePlanner:editContact' course_id=course.id contact_id=contact.id %}">
+        <i class="far fa-edit"></i></a>
+       {% endblock editContact %}
+   
+      {% block deleteContact %}
+      <a href="{% url 'coursePlanner:deleteContact' course_id=course.id contact_id=contact.id %}">
+      <i class="far fa-trash-alt"></i></a>
+      {% endblock deleteContact %}
+    </div>
+
+  {% endfor %}
+  
+  {% block newContact %}
+  {% endblock newContact %}
+
+</div>
+
+
+
+<h2 class="courseHeading">Links <a href="{% url 'coursePlanner:newLink' course.id %}">
+  <img src="{% static 'images/plus.svg' %}" class="add-btn">
+  </a>
+</h2>
+
+<ul>
+  {% for link in links %}
+    {% block editLink %}
+      <a href={{link.link}} target="_blank">
+        <div class="link">
+          <p> <i class="fas fa-link purple"></i> {{link.title}}</p>
+          <div>
+            <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
+              <i class="far fa-edit"></a>
+            {% endblock editLink %}
+      
+            {% block deleteLink %}
+              <a href="{% url 'coursePlanner:deleteLink' course_id=course.id link_id=link.id %}">
+              <button><i class="far fa-trash-alt"></i></button></a>
+            {% endblock deleteLink %}
+          </div>
+        </div>
+      </a>
+
+  {% endfor %}
+</ul>   
+ 
+{% block newLink %}
+<p></p>
+{% endblock newLink %}
+
+
+<h2 class="courseHeading">Assessments <a href="{% url 'coursePlanner:newAssessment' course.id %}">
+  <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2>
+
+<table class="assessment-table">
+  <tr class="assessment-header-row">
+    <th>Task</th>
+    <th>Weighting</th>
+    <th>My Grade</th>
+    <th></th>
+  </tr>
+  {% for assessment in assessments %}
+    <tr>
+      {% block editAssessment %}
+        <td>{{ assessment.task }}</td>
+        <td>{{ assessment.weighting }}%</td>
+        {% if  assessment.myGrade is None %} 
+        <td></td> 
+        {% else %}
+        <td>{{ assessment.myGrade }}%</td>
+        {% endif %} 
+
+        <td><a href="{% url 'coursePlanner:editAssessment' course_id=course.id assessment_id=assessment.id %}">
+          <button><i class="far fa-edit"></i></button></a>
+          {% block deleteAssessment %}
+          <a href="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}">
+            <button><i class="far fa-trash-alt"></i></button></a>
+          {% endblock deleteAssessment %}
+        </td>
+      {% endblock editAssessment %}
+
+
+    </tr>
+  {% endfor %}
+
+{% block newAssessment %}
+</table>
+{% endblock newAssessment %}
+
+{% if assessmentMessages %}
+  <div class="assessment-advice-box">
+    <h3>What you need to score in the final assessment:*</h3>
+    <div class="assessment-advice">
+
+      {% for message in assessmentMessages %}
+      <div class="advice">
+        <span class="{% cycle 'ps' 'cr' 'dn' 'hd' %}">
+        </span>
+        <span>
+          {{ message }}
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+    <p><i>*Assumes there is no double pass requirement or scaling.</i></p>
+  </div>
+{% endif %}
+<!-- <ul>
+  {% for message in assessmentMessages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+</ul> -->
+
+
+<h2 class="courseHeading">Queries <a href="{% url 'coursePlanner:newQuery' course.id %}">
+  <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2> 
+
+{% for query in queries %}
+  <div class="query-container">
+    <div class="query-bubble">
+      <div class="query-bubble__question-mark">?</div>
+      
+      <div class="query-bubble__tick">
+        <a href="{% url 'coursePlanner:deleteQuery' course_id=course.id query_id=query.id %}">
+          <button></button><i class="far fa-check-circle"></i>
+        </a>
+      </div>
+
+    </div>
+    <div class="query">
+      {% block editQuery %}
+      {{ query.text }}
+      <a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
+        <button><i class="far fa-edit"></i></button></a>
+      {% endblock editQuery %}
+      
+      {% block deleteQuery %}
+      {% endblock deleteQuery %}
+    </div>
+  </div>
+    
+  {% endfor %}
+
+{% block newQuery %}
+{% endblock newQuery %}
+
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'coursePlanner/course.html' %}
+
+{% block newQuery %}
+
+<!-- form to add a new query-->
+<form action="{% url 'coursePlanner:newQuery' course.id %}" method="post">
+  {% csrf_token %}
+  {{ form.text }}
+  {% include 'coursePlanner/form-add.html' %}
+
+
+{% endblock newQuery %}

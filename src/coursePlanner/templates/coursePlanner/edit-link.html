@@ -1,0 +1,21 @@
+{% extends 'coursePlanner/course.html' %}
+
+{% block editLink %}
+  <div class="link inactive-link">
+
+  {% if link.id == linkToEdit.id %}  
+  
+    <form action="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% include 'coursePlanner/form-edit.html' %}
+
+  {% else %}
+    <p>{{link.title}}</p>
+    <a href="{% url 'coursePlanner:editLink' course_id=course.id link_id=link.id %}">
+      <i class="far fa-edit"></a>
+
+  {% endif %}
+ 
+{% endblock editLink %}
+
