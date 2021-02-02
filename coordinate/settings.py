@@ -38,8 +38,7 @@ ALLOWED_HOSTS = [
 # My settings
 LOGIN_URL = 'users:login'
 
-# Heroku settings.
-django_heroku.settings(locals())
+
 
 # Application definition
 
@@ -145,3 +144,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Heroku settings.
+django_heroku.settings(locals())
