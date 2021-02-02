@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 
 # My settings
 LOGIN_URL = 'users:login'
-
+# Heroku settings.
+import django_heroku
+django_heroku.settings(locals())
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +41,6 @@ INSTALLED_APPS = [
     'coursePlanner',
     'users',
     'livereload',
-
 
     # Default Django Apps
     'django.contrib.admin',
