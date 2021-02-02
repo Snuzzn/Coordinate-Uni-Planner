@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '0.0.0.0',
     '127.0.0.1'
+    'arcane-badlands-15554.herokuapp.com',
 ]
 
 
