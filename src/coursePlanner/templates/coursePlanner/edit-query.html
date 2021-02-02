@@ -13,7 +13,7 @@
   {% else %}
     {{ query }}
     <a href="{% url 'coursePlanner:editQuery' course_id=course.id query_id=query.id %}">
-      <button>Edit</button></a>
+      <button><i class="far fa-edit"></i></button></a>
 
   {% endif %}
  

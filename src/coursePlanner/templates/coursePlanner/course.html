@@ -9,7 +9,7 @@
   <img src="{% static 'images/plus.svg' %}" class="add-btn"></a></h2>
 <div class="card-list">
   {% for contact in contacts %}     
-    <div class="card {% cycle 'blue-purple'  'coral' 'sky-blue'   'teal' %}"">
+    <div class="card {% cycle 'blue-purple'  'coral' 'sky-blue'   'teal' %}">
       {% block editContact %}
 
       <header>
@@ -109,11 +109,29 @@
 </table>
 {% endblock newAssessment %}
 
-<ul>
+{% if assessmentMessages %}
+  <div class="assessment-advice-box">
+    <h3>What you need to score in the final assessment:*</h3>
+    <div class="assessment-advice">
+
+      {% for message in assessmentMessages %}
+      <div class="advice">
+        <span class="{% cycle 'ps' 'cr' 'dn' 'hd' %}">
+        </span>
+        <span>
+          {{ message }}
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+    <p><i>*Assumes there is no double pass requirement or scaling.</i></p>
+  </div>
+{% endif %}
+<!-- <ul>
   {% for message in assessmentMessages %}
     <li>{{ message }}</li>
   {% endfor %}
-</ul>
+</ul> -->
 
 
 <h2 class="courseHeading">Queries <a href="{% url 'coursePlanner:newQuery' course.id %}">

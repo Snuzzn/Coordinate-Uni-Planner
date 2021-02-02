@@ -19,23 +19,24 @@ from .forms import (
     DeleteLinkForm,
     DeleteQueryForm,
     DeleteAssessmentForm,
+    DeleteCourseForm,
 )
+
+
 def Reverse(lst): 
     return [ele for ele in reversed(lst)] 
 
 @login_required
 def courses(request):
     courses = Reverse(Course.objects.filter(owner=request.user))
-    # courses = courses.reverse()
-    print(courses)
+    # course = Course.objects.create(courseCode = "111", courseName = "111", owner=request.user)
+    # course.save()
     context = {'courses': courses}
     templateName = 'coursePlanner/courses.html'
     return render(request, templateName, context)
 
 @login_required
-# Create your views here.
 def newCourse(request):
-    # Add a new course
     form = CourseForm(request.POST or None)
     courses = Reverse(Course.objects.filter(owner=request.user))
     if form.is_valid():
@@ -50,6 +51,29 @@ def newCourse(request):
         'courses': courses }
     templateName = 'coursePlanner/new-course.html'
     return render(request, templateName, context)
+
+@login_required
+def deleteCourse(request, course_id):
+    course = Course.objects.get(id=course_id)
+    if course.owner != request.user:
+        raise Http404
+    courseToDelete = Course.objects.get(id=course_id)
+
+    courses = Reverse(Course.objects.filter(owner=request.user))
+    
+    form = DeleteCourseForm(request.POST or None)
+    if form.is_valid():
+        courseToDelete.delete()
+        return redirect('coursePlanner:courses')
+        
+    # Display the blank or invalid form
+    context = {
+        'courses': courses,
+        'courseToDelete': courseToDelete,
+    }
+    templateName = 'coursePlanner/delete-course.html'
+    return render(request, templateName, context) 
+
 
 @login_required
 def course(request, course_id):
@@ -74,45 +98,6 @@ def course(request, course_id):
     templateName = 'coursePlanner/course.html'
     return render(request, templateName, context)
 
-def genAssessmentMessages(course_id):
-    course = Course.objects.get(id=course_id)
-    assessments = course.assessment_set.all()
-    totalWeighting = 0
-    runningGradePercent = 0
-    numTestsToGo = 0
-    finalWeighting = 0
-
-    for assessment in assessments:
-        totalWeighting += assessment.weighting 
-        if assessment.myGrade is None:
-            numTestsToGo += 1
-            finalWeighting = assessment.weighting
-        else:
-            runningGradePercent += (assessment.weighting / 100) * (assessment.myGrade / 100) 
-
-    if totalWeighting == 100 and numTestsToGo == 1:
-        gradesNeeded = []
-        gradesNeeded.append((0.5 - runningGradePercent) / (finalWeighting / 100))
-        gradesNeeded.append((0.65 - runningGradePercent) / (finalWeighting / 100))
-        gradesNeeded.append((0.75 - runningGradePercent) / (finalWeighting / 100))
-        gradesNeeded.append((0.85 - runningGradePercent) / (finalWeighting / 100))
-
-        gradeNames = ['PASS', 'CREDIT', 'DISTINCTION', 'HIGH DISTINCTION']
-        i = 0
-        assessmentMessages = [] 
-        for gradeNeeded in gradesNeeded:
-            if gradeNeeded > 1:
-                assessmentMessages.append(f"Unfortunately, you have not scored high enough in your earlier assessments to achieve a {gradeNames[i]} this course.")
-                return assessmentMessages
-            if gradeNeeded <= 0:
-                assessmentMessages.append(f"You have already achieved a {gradeNames[i]} in the course")
-            else:
-                assessmentMessages.append(f"You need to score {round(gradeNeeded * 100, 2)}% in the final assessment to achieve a {gradeNames[i]} in this course")
-            i += 1
-        return assessmentMessages 
-
-    else:
-        return None
 
 
 @login_required
@@ -471,3 +456,42 @@ def deleteAssessment(request, course_id, assessment_id):
     return render(request, templateName, context)
 
 
+def genAssessmentMessages(course_id):
+    course = Course.objects.get(id=course_id)
+    assessments = course.assessment_set.all()
+    totalWeighting = 0
+    runningGradePercent = 0
+    numTestsToGo = 0
+    finalWeighting = 0
+
+    for assessment in assessments:
+        totalWeighting += assessment.weighting 
+        if assessment.myGrade is None:
+            numTestsToGo += 1
+            finalWeighting = assessment.weighting
+        else:
+            runningGradePercent += (assessment.weighting / 100) * (assessment.myGrade / 100) 
+
+    if totalWeighting == 100 and numTestsToGo == 1:
+        gradesNeeded = []
+        gradesNeeded.append((0.5 - runningGradePercent) / (finalWeighting / 100))
+        gradesNeeded.append((0.65 - runningGradePercent) / (finalWeighting / 100))
+        gradesNeeded.append((0.75 - runningGradePercent) / (finalWeighting / 100))
+        gradesNeeded.append((0.85 - runningGradePercent) / (finalWeighting / 100))
+
+        gradeNames = ['PASS', 'CREDIT', 'DISTINCTION', 'HIGH DISTINCTION']
+        i = 0
+        assessmentMessages = [] 
+        for gradeNeeded in gradesNeeded:
+            if gradeNeeded > 1:
+                assessmentMessages.append(f"→ Unachievable")
+                return assessmentMessages
+            if gradeNeeded <= 0:
+                assessmentMessages.append(f"→ Achieved")
+            else:
+                assessmentMessages.append(f"→ {round(gradeNeeded * 100, 2)}%")
+            i += 1
+        return assessmentMessages 
+
+    else:
+        return None

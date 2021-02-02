@@ -1,6 +1,8 @@
 from typing import NewType
 from django import forms
 
+
+
 from .models import (
     Assessment, 
     Course,
@@ -8,6 +10,7 @@ from .models import (
     Link,
     Query,
 )
+
 
 class CourseForm(forms.ModelForm):
     class Meta:
@@ -124,4 +127,9 @@ class DeleteAssessmentForm(forms.ModelForm):
 class DeleteQueryForm(forms.ModelForm):
     class Meta:
         model = Query 
+        fields = []
+
+class DeleteCourseForm(forms.ModelForm):
+    class Meta:
+        model = Course 
         fields = []

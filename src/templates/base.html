@@ -13,68 +13,66 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   {% block head %} {% endblock head %}
 </head>
-
 <body>
   <section class="glass">
-      <nav class="navbar">
+    <nav class="navbar">
+      <div class="nav-item nav-logo">
 
-        <div class="nav-item nav-logo">
-  
-          <a href="/">
-            <!-- {% include 'coordinateLogo.html' %} -->
-            <img src="{% static 'images/logo.png' %}" class="logo">
-          </a>
-          <div class="nav-cursor"></div> 
-  
-        </div>
-  
-        <div class="nav-item nav-courses courseMenu"> 
-          
-          <a href="{% url 'coursePlanner:courses' %}">
-            <img src="{% static 'images/courseIcon.png' %}">
-          </a>
-  
-          <div class="nav-cursor"></div> 
-          <div class="courseMenuContent">
-            <h2>Courses</h2>
-            {% for course in courses %}
-            <div class="course">
-              <a href="{% url 'coursePlanner:course' course.id %}" class="course">{{ course }}</a>
-            </div>
-            {% endfor %}
-            <div>
-              <a href="{% url 'coursePlanner:newCourse' %}">
-                {% include 'addBtn.html' %}
-              </a>
-            </div>
+        <a href="/">
+          <!-- {% include 'coordinateLogo.html' %} -->
+          <img src="{% static 'images/logo.png' %}" class="logo">
+        </a>
+        <div class="nav-cursor"></div> 
+
+      </div>
+
+      <div class="nav-item nav-courses courseMenu"> 
+        
+        <a href="{% url 'coursePlanner:courses' %}">
+          <img src="{% static 'images/courseIcon.png' %}">
+        </a>
+
+        <div class="nav-cursor"></div> 
+        <div class="courseMenuContent">
+          <h2>Courses</h2>
+          {% for course in courses %}
+          <div class="course">
+            <a href="{% url 'coursePlanner:course' course.id %}" class="course">{{ course }}</a>
+          </div>
+          {% endfor %}
+          <div>
+            <a href="{% url 'coursePlanner:newCourse' %}">
+              {% include 'addBtn.html' %}
+            </a>
           </div>
         </div>
-  
-        <div class="nav-item nav-term"> 
+      </div>
 
-          <a href="#">
-            <img src="{% static 'images/termIcon.png' %}">
-          </a>
+      <div class="nav-item nav-term"> 
 
-          <div class="nav-cursor"></div>
+        <a href="#">
+          <img src="{% static 'images/termIcon.png' %}">
+        </a>
 
-        </div>
-  
-        {% if user.is_authenticated %}  
-        <div class="nav-item">
-            <div class="username">{{ user.username }}</div>
-            <div><a href="{% url 'users:logout' %}" class="user-btn">Logout</a></div>
-        </div>
-        
-        {% else %}
-        <div class="nav-item">
-          <div><a href="{% url 'users:register' %}" class="user-btn">Register</a></div>
-          <div><a href="{% url 'users:login' %}" class="user-btn">Login</a></div>
-            
-        </div>
-  
-        {% endif %}
-      </nav>
+        <div class="nav-cursor"></div>
+
+      </div>
+
+      {% if user.is_authenticated %}  
+      <div class="nav-item">
+          <!-- <div class="username">{{ user.username }}</div> -->
+          <div><a href="{% url 'users:logout' %}" class="user-btn">Logout</a></div>
+      </div>
+      
+      {% else %}
+      <div class="nav-item">
+        <div><a href="{% url 'users:register' %}" class="user-btn">Register</a></div>
+        <div><a href="{% url 'users:login' %}" class="user-btn">Login</a></div>
+          
+      </div>
+
+      {% endif %}
+    </nav>
     
     <main>
       {% block page_header %}{% endblock page_header %}

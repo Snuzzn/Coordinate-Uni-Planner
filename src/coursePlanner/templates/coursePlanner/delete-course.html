@@ -1,0 +1,22 @@
+{% extends 'coursePlanner/courses.html' %}
+
+{% block deleteCourse %}
+
+  {% if course == courseToDelete %}
+    <form action="{% url 'coursePlanner:deleteCourse' course_id=course.id %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="course-delete-cancel"><i class="far fa-check-circle"></i></button>
+      <a href="{% url 'coursePlanner:courses' %}">
+        <i class="fas fa-ban"></i></a>
+     </form>
+      
+  {% else %}
+  <a href="{% url 'coursePlanner:deleteCourse' course_id=course.id %}">
+    <i class="far fa-trash-alt"></i></a>
+
+
+
+  {% endif %}
+
+{% endblock deleteCourse %}
