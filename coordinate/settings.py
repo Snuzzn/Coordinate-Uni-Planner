@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     # My Apps
     'coursePlanner',
     'users',
-    'livereload',
 
     # Default Django Apps
     'django.contrib.admin',
@@ -67,7 +66,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'livereload.middleware.LiveReloadScript'
 ]
 
 ROOT_URLCONF = 'coordinate.urls'
