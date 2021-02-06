@@ -1,19 +1,21 @@
-{% extends 'coursePlanner/course.html' %}
+{% extends 'coursePlanner/course.html' %} {% block deleteAssessment %} {% if
+assessment == assessmentToDelete %}
+<form
+  action="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}"
+  method="post"
+>
+  {% csrf_token %}
+  <button type="submit"><i class="far fa-check-circle"></i></button>
+  <a href="{% url 'coursePlanner:course' course.id %}">
+    <button type="button"><i class="fas fa-ban"></i></button
+  ></a>
+</form>
 
-{% block deleteAssessment %}
+{% else %}
+<a
+  href="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}"
+>
+  <button><i class="far fa-trash-alt"></i></button
+></a>
 
-  {% if assessment == assessmentToDelete %}
-    <form action="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}" method="post">
-      {% csrf_token %}
-        <button type="submit"><i class="far fa-check-circle"></button>
-        <a href="{% url 'coursePlanner:course' course.id %}">
-          <button type="button"><i class="fas fa-ban"></i></button></a>
-      </form>
-
-  {% else %}
-    <a href="{% url 'coursePlanner:deleteAssessment' course_id=course.id assessment_id=assessment.id %}">
-      <button><i class="far fa-trash-alt"></button></a>
-
-  {% endif %}
-
-{% endblock deleteAssessment %}
+{% endif %} {% endblock deleteAssessment %}
