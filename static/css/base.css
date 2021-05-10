@@ -86,6 +86,8 @@ html {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     overflow: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #A3D8E5 #A7E1F1;
 }
 
 body {
@@ -117,6 +119,7 @@ main {
     margin: 2rem;
     overflow: auto;
     /* border: 2px solid purple; */
+
 }
 
 ::-webkit-scrollbar {
